@@ -1,0 +1,330 @@
+27/10/2022
+----------
+
+-->> Next Experience Unified Navigation Activity 
+
+
+1. 	Log into the Simulator instance and quickly identify what you can access by using the All menu. Notice you can access many applications based on the admin role you have been assigned.
+
+2. 	Now, impersonate Abel Tuter and collapse all the applications using the same shortcut. Notice the difference in role-based security compared to yours.
+
+3. 	While impersonating Abel Tuter, create a Favorite for the Change Password module. Set the Color to purple and the Icon to a key.
+
+4. 	End impersonation to switch back to your user. Look at your Favorites. Is the Change Password favorite you created as Abel Tuter here? Should it be?
+
+
+
+Solution : 
+
+    - Impersonate Abel Tuter 
+    - Add Change Password as Favourite and from Favourites edit according to the requirements
+    - Save and End Impersonation 
+    - The Favourites appears only for the user
+
+
+
+
+-->> List and Filters Activity
+
+
+To help them fulfill procurement tasks, the Hardware group needs to see additional information when looking at Service Catalog Requests.
+
+1. Navigate to the All > Service Catalog > Open Records > Requests module to display the List view for the Requests (sc_request) table. Then create a new List view called 'Delivery' to show the following fields in the order shown. 
+
+• 	Number
+• 	Requested for
+• 	Due date
+• 	Urgency
+• 	Delivery address
+
+
+HINT: If you get stuck on creating the view, review the Lists and Filters Lesson.
+
+After creating your new view, be sure to select it within the list view, to display it:
+
+
+2. To help identify Hardware requests quickly, create a saved filter for the list. Begin by filtering your list view to only display Active requests, where the Assignment group is the Hardware group and the Stage is Requested. Then use the Save.. button to save the filter with the name 'Hardware Requests' and ensure Everyone can access it.
+
+
+3. Apply the Hardware Requests filter to your list view, then create a Favorite to save the link to the list view in your Favorites list.
+
+
+4. Personalize the new Delivery list view to meet your individual needs. Click the Personalize List gear icon in list header to add the Escalation field to the list just before Delivery address.
+
+
+
+
+Solution :
+
+    - Right Click on Any of the column headers and choose configure -> Form Layout -> Views -> New -> Add required fields in the same manner and Save
+    - Now use the Filter Option :
+            - Active is True
+            - Assignment Group is Hardware
+            - Stage is Requested
+        - Save the Filter with the name given 
+    - Also create Favourite from the List Control Menu
+    - Then add the Escalation field to the List in the Delivery View using the gear icon 
+
+
+
+
+
+
+-->> Form Usage Activity 
+
+
+The product development group wants to speed up and simplify the creation of Contracts for non-disclosure agreements by using templates.
+
+1. Create a new form template record (sys_template) for the Contract (ast_contract) form that anyone can use to apply the necessary field values specific to non-disclosure agreement contracts. Name the form template 'Create NDA Contract' and have it set the following four fields:
+
+•	 Contract model: NDA
+•	 Contract administrator: Karla Ken
+•	 Approver: Bud Richman
+•	 Options: 1 Year
+Templates can be created by either saving a record as one, or by navigating to System Definition>Templates>New
+
+
+2. Test the new Create NDA Contract form template by creating a new non-disclosure agreement for the vendor Apple. You may enter any value for the Contract number. Stay on the same form by using Save, rather than Update.
+
+
+3. Make use of Insert and Stay to create a second non-disclosure agreement using the same values but change the vendor to Google.
+
+
+
+
+
+Solution : 
+
+    - Filter Navigator -> Templates (System Definition) -> New
+        - Name : Create NDA Contract
+        - Table : ast_contract
+        - Set the values of given fields
+    - Filter Navigator -> Contract -> Non-disclosure
+    - New Record -> Choose Template as NDA .....
+    - Fill the Vendor as Apple and Contract Number - 123456 
+    - Save
+    - Insert and Stay and change Vendor to Google and Contract Number - 654321
+
+
+
+
+
+
+-->> Form Configuration Activity
+
+
+To help rollout a new tiered support program for customers, partners, and suppliers, you will modify the Company form to capture the important information.
+
+1. Navigate to the All > User Administration > Companies module in the Filter navigator
+
+2. Select the List Controls button (three lines)
+
+3. Select View and choose Default view
+
+4. Click New (far right side at the top of the page)
+
+5. A new empty record appears
+
+6. On the Form, select the Additional actions button (three lines)
+
+7. Select Configure > Form Design
+
+8. Form Designer will open in a new tab on your browser
+
+9. In the Form Designer, drag the Rank tier field from the Fields list on the left to the form underneath the Vendor field
+
+10. On the Rank tier field, select the cog icon to edit the field
+
+11. Scroll to the bottom of the Properties window and add the new choice value with a label of Global Partner and a value of global
+
+12. Close the Properties window (click the X in the top right corner)
+
+13. Select the Field Types tab and drag the String field to the form, underneath the Rank tier field
+
+14. Select the cog icon to edit the field
+
+15. Modify the Label to be Tier ID, the Name to be u_tier_id, and the Max length to be 40
+
+
+16. Close the Properties window (click the X in the top right corner)
+
+17. Select Save on the Form Designer
+
+18. Select the View dropdown in the header in the upper left and choose Customer view
+
+19. Select the new Tier ID field from the Fields tab and drag it underneath the Customer field
+
+20. Select Save
+
+
+
+Solution : 
+
+Follow Steps given
+
+
+
+-->> Task Management Activity 
+
+
+A high-risk Change Request needs to be assigned fast. The customer should also be notified assistance will contact them soon.
+
+1. 	Find the Change Request record with a Number of CHG0000001 the quickest way possible.
+
+2. 	Update the assignment of the Change Request to Beth Anglin in the Software group.
+
+3. 	On the Notes tab, add a customer visible comment reading: “Thank you for your patience. Beth Anglin, our support engineer, will be contacting you shortly to coordinate the rollback of the instance.”
+
+4. 	The customer would like to automate the assignment of some incidents by category to the specific teams responsible for those types of incidents. Use the System Policy - 'Assignment Lookup Rules' (not the now deprecated 'Assignment Rules' table to configure the instance so that:
+        - Hardware category incidents should be auto-assigned to the Hardware group.
+        - Software category incidents should be auto-assigned to the Software group.
+
+5. 	Create Incident records to verify that the newly created assignment rules work as expected.
+
+
+
+Solution : 
+
+    - Open CHG0000001 by global search
+    - Change the Assignment gropup and Assigned to
+    - Add Additional Comments 
+    - Open Assignment Lookup and Create New 
+    - Set Category to Hardware and Assignment Group as Hardware
+    - Set Category to Software and Assignment Group as Software
+    - Test by creating New incident
+
+
+
+
+-->> Visual Task Board Activity 
+
+The Change Request coordinator wants to ensure the workload is divided effectively across all available engineers. She suspects there might be some existing bottlenecks to mitigate.
+
+You will support the Change Request coordinator by creating a Visual Task Board to help manage the resolution of these tasks.
+
+
+1. 	Base the Visual Task Board on open requests in the Change application. Organize it to easily verify the Change Requests assigned to each engineer. Make sure only Change Requests where State IS NOT ONE OF Review, Closed, or Canceled are included. Note: when using the 'is not one of' operator, you can select multiple values from the list.
+
+HINT: Filter the Change Request list and quickly create the Visual Task Board from the Assigned to field on the list.
+
+
+2. 	
+Acting as the Change Request coordinator, begin to even out the workload using your Visual Task Board as follows:
+
+        - Assign the currently unassigned 'Upgrade Tomcat server to 4.0' Change Request to Bud Richman.
+        - Looks like Fred Luddy is swamped. Re-assign his 'Oracle FLX (Java App Dependency)' Change Request to Charlie Whitherspoon.
+
+
+Solution :
+
+Follow the steps
+
+
+
+-->> Notifications Activity 
+
+The Software group needs to be notified when new software license contracts are created.
+
+1. 	Implement a Notification based on the following requirements:
+        - Name: Software License Contract Created
+        - Table: Contract [ast_contract]
+        - Category: Contract Management
+        - Inserted: selected
+        - Send the Notification only if the Contract model is Software License
+        - Specify the Software group to receive the Notification
+        - Begin the Subject line with 'New Software License Contract: ' and include both the Number and Contract number in the subject
+        - Write your own Message HTML
+
+2. 	Preview the Notification to see how it would appear to the user.
+
+3. 	Create a new software license contract to test your Notification. You can verify your Notification was sent correctly using All > System Mailboxes > Outbound > Outbox. Fred Luddy is in the Software group.
+
+
+
+Solution :
+
+    - Create New Notification
+    - Include all the given Info
+    - Preview Notification
+    - Create New Software License and Test in Outbox
+
+
+
+-->> Reporting Activity 
+
+
+For Monday morning management meetings, Mara Rineheart requires a pie chart report showing all contracts created in the last 7 days, broken down by Contract model.
+
+1. 	Create a report using the Contract table meeting Mara's requirements.
+
+Hint: Ensure you make the filter using a condition as simple as possible to only return contracts created in the last 7 days. You might need to add some new contracts to test your report.
+
+2. 	Schedule the report so that Mara receives it every Monday morning at 8am.
+
+
+
+Solution : 
+
+    - Go to the Contract Table and Filter the Contract by choosing 
+            - After {Date before 7 days}
+
+    - Then Right click on Contract Model Field and choose Create Pie Chart
+    - It will take you to the report
+    - Save and Click on Share button at the top and choose Schedule 
+    - Schedule it to Weekly on Monday, Time : 8 AM 
+    - Now add User as Mara 
+    - Save the report and create a new Contract Record 
+
+
+
+
+
+-->> Knowledge Management Activity
+
+
+
+Leverage Knowledge Management
+
+Initech Incorporated has provided a workaround for a known issue affecting tricorder detection. Use the information below to publish a new article for review in the IT knowledge base under the Devices category.
+
+Short Description: Tricorder detected Klingons on the starboard bow
+Article body:
+      Error: Klingons detected to the right
+      Solution:
+           1. Contact the engine room, warp factor 9.
+           2. Break the laws of physics, science, and reality.
+
+Note: By default, all Knowledge Base articles must go through a Review Process before they appear to users. Therefore, once you select the Publish button, the Workflow state will be Review.
+
+
+
+Solution :
+
+
+    - Open Knowledge -> New Article under KB : IT
+    - Category : Devices
+    - Add the Short Description and Article Body and publish
+
+
+
+
+
+-->> Service Catalog Activity
+
+
+Your company mobile phone is no longer working after a rough drop.
+
+Order an Apple iPhone 6s Plus from the Service Catalog to replace it. You will require an unlimited data allowance with 128GB of storage.
+
+
+
+Solution : 
+
+    - Filter Navigator -> Service Catalog
+    - Mobiles -> Iphone 6s Plus
+    - Choose Data Allowance : unlimited
+    - Storage - 128GB
+
+
+
+
