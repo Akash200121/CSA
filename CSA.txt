@@ -1,0 +1,1400 @@
+Certified System Administrator - ServiceNow
+
+
+San Diego Instance
+
+28/09/2022
+----------
+
+
+Fred Luddy - Created Now Platofrm 
+
+
+>> Now Platform 
+
+The Now Platform from ServiceNow provides an Application Platform as a Service (aPaaS)
+
+    - This means that it is a cloud based computing model which provides the infrastructure needed to develop run, and manage applications
+    - This is not only limited to specific department or function but the entire enterprise
+
+
+This platfrom provides modern, easy to use, service management solution in the cloud.
+    Allows
+        - Automation Manual
+        - Repeatable Process
+        - Standardize Service Delivery
+        - Focus on Core Business
+    
+    It is configurable web - based UI built on top of a flexible table structure
+    The Apps on Now Platform used Single System of Record and a common Data Model to consolidate business processes
+    This can be used to build Custom Apps
+
+
+--> The Application delivered by SN are divides into four different workflows :
+
+        - IT workflows
+        - Employee workflows
+        - Customer workflows
+        - Creator workflows
+
+
+--> Management of all SN hosted Instances, including upgrades is performed using the Now Support (HI)
+
+    - HI - Hosted Instance
+    - AKA HI Service Portal
+
+
+The Access to HI is reserved to few Team Members
+
+
+
+--> Now Platform Interfaces
+
+    There are 3 ways to interact with Now Platform :
+            
+            1. Next Experience Unified Navigation
+            2. Now Mobile Application
+            3. Service Portal
+
+
+--> Next Experience Unified Navigation 
+
+    Next Experience Unified Navigation is the primary way to interact with the applications and informatoon in a ServiceNow Instance
+
+    Notable Next Experience features includes :
+
+            - Landing Pages and navigation menus designed with tabs for all application / modules
+            - Favorites
+            - History
+            - Workspaces
+    
+
+ServiceNow Mobile Application
+
+    - ServiceNow Mobile Agent
+            - Targeted towards the role of fulfiller
+            - It supports the needs of those fulfilling requests for products and services across the enterprise
+
+    - Now Mobile 
+            - Targeted towards the needs of an Employee
+            - It includes functionality such as reporting broken items and finding available conference rooms
+
+
+
+>> Top 10 reasons to use ServiceNow Mobile Apps
+
+    - Persona-focused for intuitive use
+
+    - Mobile first and completely native, using the device's built-in features
+
+    - Codeless and rapid development of new applets
+
+    - Ability to submit, view, and update requests, issues, and tasks
+
+    - Global search to find people, service and items, and articles
+
+    - Offline access with Mobile Agent to enable fulfillers to complete work while not connected
+
+    - Push notifications for access to important information instantly
+
+    - Access to Virtual Agent and knowledge articles
+
+    - Role-based access to customized information
+
+    - Manageable from an MDM (mobile device management) or an MAM (mobile application management)
+
+
+
+25/10/2022
+----------
+
+
+>> Service Portal 
+
+    - The Service Portal provides a user-friendly self-service experience, by providing access to specific features, using widgets. 
+    
+    - Users are able to:
+            - Search for articles, catalog items, records
+            - Submit requests
+            - Browse the corporate news feed
+            - And much more!
+
+    - The Service Portal can be accessed by navigating to "https://<instancename>.service-now.com/sp"
+
+
+
+
+>> Role Based Access
+
+- Defining the components of Role-Based Access
+
+        - The Now Platform utilizes role-based access to ensure people have the information and workflows they need to fullfill their roles
+        - Not Every Member in the Organization needs to have access to all information at all times
+
+
+    Components of Role-Based Access
+        
+        - User
+        - Group
+        - Role 
+        - Base System Roles
+
+
+
+1. User 
+
+        An Individual that has been granted access to your ServiceNow Instance.
+
+
+2. Group 
+
+        A group is a set of users who share a common purpose, members of a group perform similar tasks or need access to similar information for various purposes, such as approving change requests, resolving incidents, receiving email notifications, or administering the Service Catalog. Users working in ServiceNow are typically assigned to one or more groups.
+
+
+3. Role
+        
+        A role is a collection of permissions in the Now Platform used to: 
+
+                    - Grant access to applications and other parts of the platform, and
+                    - Assign security rights 
+        
+        
+        These permissions define which applications a user or group will and will not be able to access within the system and which actions the user will be able to take on records within the applications. A role can be assigned to a single user or a group of users. Users and groups can be assigned more than one role.
+
+        Additionally, a role can contain other roles. In the example below, the catalog_admin role contains a number of other roles. If a user or group was assigned the catalog_admin role, they would be granted the permissions of all the roles contained within the catalog_admin role.
+
+
+4. Base System roles
+
+        The Now Platform includes many delivered base system roles, some are described below
+
+                    - System Administrator (admin): Provides almost all roles and access to all Now Platform features, functions, and data (with some exceptions such as HR and Security Operations constraints). Grant this privilege carefully. Users holding the admin role can create and modify user roles, as well as impersonate other users. 
+
+                    - Specialized Administrator (example: catalog_admin): Provides users with specialized administrator roles to manage specific functions or applications, such as knowledge base, human resources, reports, and web services. 
+
+                    - Approvers (approver_user): Allows users to view or modify approval records directed to them.
+
+                    - ITIL (itil): Can perform standard actions for an ITIL help desk technician. Can open, update, close incidents, problems, changes, configuration management items. By default, only users with the itil role can have tasks assigned to them.
+
+
+
+
+--> Assign Role-Based Access
+
+        - Once a collection of permissions has been defined as a role, it can be assigned to a group or user. All groups or users assigned to that role are granted the access allowed by the role permissions.  
+
+
+    ** GOOD PRACTICE: Rather than assigning roles to individual users, add the users to a group and assign the role to the group. This method of role assignment simplifies maintenance when responsibilities within the organization change. 
+       A user can be removed from one group and added to a new group, inheriting all the permissions needed to the perform their new duties. 
+    
+
+        - By assigning a role containing other roles to a group, all users in the group are granted access to the permissions of any contained roles. Only assign roles to the groups that need them. 
+
+
+
+** Users without any assigned role permissions can still log in to ServiceNow and access common actions, such as viewing a homepage, accessing the Service Catalog, viewing knowledge articles, and taking surveys. These are often referred to as self-service users.
+
+
+
+
+
+
+--> Log in to ServiceNow
+
+        - When Logging in to SN - User Authentication is first level of Security, it validates the identity of the user who accesses the Instance
+                                  Then it uthorizes the user to access features that match the user's roles or job function
+    
+
+    - The ServiceNow Platform can support many different methods of user Authentication. User credentials are matched to different, saved credentials for each method
+
+
+- Different User Authentication methods
+
+    - Local Database : Authenticates the user name and password stored in their corresponding user record in the ServiceNow instance
+
+    - External Single Sign-On (SSO) : Authenticates the user name and password configured in identity providers that have a matching user account in the ServiceNow instance
+
+    - LDAP : Authenticates the user name and password in their LDAP (Lightweight Directory Access Protocol) account that has a matching user account in the ServiceNow instance
+
+    - OAuth 2.0 : Authenticates the user name and password of OAuth identity provider that has a matching user account in the ServiceNow instance
+
+    - Digest Token : Authenticates an encrypted digest of the username and password stored in the user record
+
+    - Multi-factor : Authenticates the user name and password in the ServiceNow instance and sends a passcode to the user's mobile device where an authenticator supporting Time-based One-time Password (TOTP) is installed, such as Google Authenticator
+
+
+
+
+
+26/10/2022
+----------
+
+
+
+-->> Getting started with Next Experience Unified Navigation
+
+        - First time someone logs in to Next Experience Instance - Onboarding Component is available to get acquainted with the UI
+                                                                 - Click on the Check it out button to get comfortable Navigating 
+                                                                 - Once Demo is closed we have to ask System admin to reactivate 
+        
+        - Visualization Components - Displays Information specific to the logged in user
+                                   - It shows the Assigned Tasks and also Dashboards which helps in focusing on work pending
+
+
+
+--> Next Experience Unified Navigation has four distinct Zones 
+        
+        - Logo
+        - Navigation Menu 
+        - Contextual App Pill - Know Where you are in the Instance
+        - Utility
+        - Global Search : Can search for anything in the Instance, or open any particular Record with the Record number
+        - Get Help
+        - Notification Icon
+        - User Menu to Personalize the Instance
+
+** We can as well use impersonate to pretend to be another user and see SN from their Perspective
+   This is different from Elevate Roles
+
+** Elevate Roles - Extra Layer of precaution for powerful roles, Administrators often use it when modifying high security settings
+
+
+
+
+--> All Menus and Filter Navigator
+
+        The Main Elements of Unified Navigation are
+
+                        - All Menu
+                        - Favourites Menu
+                        - History Menu 
+                        - Filter Navigator
+                        - Workspace Menu only appears if you have a Workspace
+        
+        
+-> Each Application contains different Modules, Modules can be grouped into sections which can also be collapsed or expanded 
+-> Exceptions : Modules that Run Script or turn on Debugging cannot be collapsed
+
+-> Searching for "change" displays all application and modules along with their sections containing name as change
+
+-> If we type "Table_Name.list" it will show the list view of that table is displayed in the Content Frame
+-> Similarly "Table_Name.form" displays the Form 
+
+-> Using "Table_Name.LIST" Opens the list in New Tab
+-> Similarly "Table_Name.FORM" Opens the Form in New Tab 
+
+-> Favourites - We can add any application or Modules as favourites by clicking on Star
+-> We can Edit Favourites - Change Name, Color, Icon and even re-order them 
+
+-> History Menus
+        - History menu entries are created for many types of content, including lists, records, and homepages
+        - Entries are listed chronologically and divided into time periods 
+        - A second line in the entry identifies history for a specific record
+
+- History menu can be used to quickly navigate between specific records you are working on rather than accessing the same from the list
+- Can be used to Get back to where you were
+- By default the History is shown for the past 30 entries. The System Administrator can configure this to change the value up or down
+
+
+
+
+-->> Lists and Filters Overview 
+
+                - Lists and Filters help manage the records in a ServiceNow Table
+                - A list displays a set of records from a table
+                - Users can Search, sort, filter and edit data in lists 
+                - Lists may be embedded in forms and may be hierarchical (have sublists)
+
+                - The list interface consists of a title bar, filters and breadcrumbs, columns of data, and search capability
+                - Each column in a list corresponds to a field in the table
+                - Each row corresponds to a record in the table
+
+        > We access List Controls via the List controls icon (on top right) or by right clicking list header
+        > We have different "Views" and "Filters", we can use these filters to see specified records that satisfies Filter Criteria
+        > Group by - Allows us to group records by column
+                Example : Incident Lists, group by - Priority shows the number of Incident records in each priority type
+        > We can also change the number of records displayed per page using the "Show" - The higher the number of records to be displayed the slower the page loads
+        > We can use "Refresh List" to see the latest records updated
+        > "Create Favourite" - add the current list with the applied filters as favourites
+        > Personalize List Columns (Gear Icon)
+                - It is always advised to keep the first column as it is
+        
+        > Filter - Set of conditions applied to a table to help you find and work with a subset of data in that table 
+        > Filter Out - Right click on a value and Filter out to exclude the value
+        > Show Matching - Display only Matching Records
+
+        > Breadcrumbs - Shows us the Filters we have applied 
+                        Also helps us remove the conditions by clicking on the previous conditions
+                        If we have to remove the condition from middle without affecting other we can use the Condition Seperator ">" arrow
+        
+        > We can also use the Condition Builder to Add or Remove a condition
+        > We can save the Filter and also configure the "Visible to" which can enable the selected users to use this Filter
+
+
+
+-->> Different ways to Search a List
+
+        - Search option allows us to perform a quick search on one column, the choices include all the visible fields in the list
+        - If we dont apply a Wildcard along with the Search Term the system automatically applies a default Wildcard [%,*,..]
+        - The Magnifying glass icon hides or displays column search feature
+        - You can filter a list by entering search text in multiple columns
+
+        - Wilcards also occurs in the breadcrumbs and the condition builder 
+
+        - If a table has a Text Index, we can perform keyword search across all the fields even though it is not visible in the list
+        - This Text Search supports Boolean Operators : UpperCase [OR, AND], We can perform exact searches by enclosing in Quotation Marks ""
+
+>> Context Menus provides three different levels of list control :
+                - The List Control Menu : Top Left Menu
+                - The List Column Context Menu : Appears for each column 
+                - The List Fields Context Menu : Available for each value in the list
+        
+These Context Menus can be configured by System Administrator according to Roles 
+
+
+        - The List Column Context Menu has options other than sort
+        - It has "Show Visual Dashboard" : This allows you to create a New Visual Task Board based on the List of Record 
+                                           This is a Collaboration Tool with a Special UI for presenting Tasks in a List
+                                           This option is Only Available on list of task records such as Incident, Problem or My Work 
+
+        - The "Bar Chart" or "Pie Chart" Option allows to view the record in the form of Bar or Pie, also automatically grouped by the value in the column 
+
+        - Configure provides advanced list configuration options, this allows users with admin role to set up List Displays for users
+        - The List of columns displayed can be changed for different Views
+
+        - Import allows to add or update new or existing records using data from MS Excel File 
+        - Export allows to save the currently displayed records in many different formats
+
+        - Update Selected allows to update one or more fields on multiple records at a time
+
+
+
+        - Right Clicking any value in the list opens List Fields Context Menu which varies by table
+
+        - "Copy URL to Clipboard" or "Copy sys_id" respectively to the Clipboard
+                The sys_id helps to identify the record 
+                        For example : To make certain REST API calls to the Instance 
+        
+        - Assign Tag allows you to create new tag or assign an existing one to the record
+                - Users can filter records by tags 
+                - System Admin can configure notification to be sent out when records with specific tags are updated
+
+        
+        - We can use "i" icon to preview a record
+        
+        - Clicking the Linked item like Number opens the record, User Name opens User Record
+
+        - If allowed the Field Values of a record can be edited without opening a record, by double clicking the value to be changed
+        - We can select multiple non-consecutive values using Shift + Ctrl and then double click the record and make changes
+        - We can select mulitple consecutive values using Shift + Down / Up arrow and then double click the record and make changes
+
+        - The Activity Stream Icon appears in the List title bar for tables that track activity 
+                        for example : Incident, Change, Problem 
+
+        
+        - We can as well perform Acions on List Items by Selecting all the currently displayed list records
+
+
+
+
+-->> Natural Language Query (NLQ) :
+
+        - The Natural Language Query allows you to filter the list data using natural language, instead of the condition builder
+        - As you type, auto-suggestions for text will appear so you can click the suggestion before typing the complete filter
+        - Click Ask, and you will see the filter applied to the breadcrumb
+
+        - The Natural Language Query can be activated by installing the Natural Language Query (com.snc.nlq) and Predictive Intelligence (com.glide.platform_ml) plugins
+
+        - Administrators will be able to turn this feature off by using the list control
+        - To turn this feature off, navigate to sys_properties.list, search for *nlq under Name.
+                - For com.snc.listv2.nlq.lists.append_query, set the Value to false
+
+
+
+
+
+
+
+27/10/2022
+----------
+
+
+-->> Forms Overview
+
+        - Forms helps users to view or update a single record, they can also guide users through Data Entry process to ensure consistency
+
+        - A form displays information from one record in a data table 
+        - Forms are displayed in the content Frame
+        - We can use forms to create, view or modify a specific record in a data table 
+
+>> Basic Form Elements 
+
+        - Taking Incident table - Logged in as ITIL 
+        - Access form by opening an existing record or creating new record 
+        - Forms contains fields to collect and display data
+        - Each field represents individual data in an incident record
+        - The "*" identifies Mandatory fields
+        - Some forms also contains sections with additional fields
+        - Sections can be displayed in "Tabs" - which can be enabled or disabled
+
+        - There are many Field types :  
+                        - String Fields
+                        - Choice Fields 
+                        - Boolean Fields [Checkbox]
+                        - Reference Fields   etc.....
+                        
+        - The Reference Fields can also be previewed by clicking "i" icon
+                        
+        - Grey Fields means the value is Read Only 
+                        
+        - Additional Comments and Work Notes are Journal Fields 
+                - Work Notes only viewable to users with ITIL role
+                - Comments are viewable by all users
+                        
+        - Some fields are dependent on other
+
+                - For Example : The "On Hold Reason" field only gets displayed when "State is On Hold" 
+                        
+        - Several ways to save record 
+
+                - Clicking Form Context Menu or Right Clicking form header
+                - Submit to save and close 
+
+        - After Saving a new option "Copy Incident" appears in Form Context Menu
+                - This creates copy of the record with new record number
+                        
+        - Few other records can be copied by using "Insert", "Insert and Stay" 
+
+                - Insert copies the record and redisplays the list 
+                - Insert and Stay copies the record and keeps it open 
+                        
+        - Many Forms have one or more related lists which displays record from other table that have relationship with the record
+        - They appear only when the Form is saved
+                
+
+        - Form displays only a subset of the fields on the underlying table
+
+        - The views of the form can also be changed
+        - The currently displayed view appears near the Record Number
+
+
+        - We can use form Personalize feature to show the fields that we want, the changes do not affect others
+        - The checkboxes shaded means those fields cannot be hidden 
+
+        - The Self Service Users do not have the option to change the view
+        - They can click the "Activity Stream" icon to see the activities and also they can see the Timestamp for those activities 
+                        
+        - We also have "Attachment Icon" to attach required information or we can drag and drop files from File Manager to form header 
+        - We can delete the attachments by clicking the "Attachment Icon" and select record and remove
+        - An attachment can also be renamed or downloaded from there 
+
+
+        - A Formatter is a form element used to display information that is not a field in the form 
+                - For Example : Activity Stream, Related Search Results
+        
+        - The knowledge article can be attached from the related search results after previewing
+        - The Link for the KB is directly attached in the Additonal comments and can be sent to Customer
+        
+        - We can even Filter the content appearing in the Activity Formatter by using the checkboxes
+
+
+
+
+>> Creating and applying form templates
+
+        - Form Templates simplify the process of filling the form by auto populating few fields
+        - We can access Form Templates by Clicking More option on the Form Header - The "Toggle On" stays at the bottom even when another form is opened until "Toggle Off"
+
+        - The ability to configure or apply templates created by others depends on user access controls within the template
+        - The fields changed by the template are identified with a "Tick Icon" 
+
+        - Form Templates only set values for specific fields on the record 
+        - They dont change the configuration or personalization of form fields
+        - They Set values of the fields on the underlying table even if those fields arent displayed in the form 
+
+        - We can see all templates which we have access to and we can apply to current record, edit or view them 
+
+
+
+> Several ways to create Templates 
+
+        1. Form Template - requires Admin role 
+        2. Select the Form Values and Click on "+" icon below and save
+                - In the User and Group field if we select a specific user or group others cannot see the template unless we select Global Option 
+                - Always advised to fill Short Description 
+
+
+
+
+
+>> Form Layout and Design
+
+
+        - Form Views provide unique configuration of system forms, Targeted to users with specific needs for that form 
+        
+-> Form Designer 
+
+        - Allows to add Form Views and also Add and Remove Field on Forms
+
+Navigation : Go to the form we want to edit and click on Form Context -> Configure -> Form Design
+
+Who can access this ?
+
+Admin or personalize_form role is required to configure forms using Form Designer
+
+
+        - Form Design is a GUI which makes it easy to configure Forms 
+        - Each Form is selected with Unique table and View
+        - We can select the View for which we want them to appear or we can even create New View 
+        - Top Left "+" Symbol is to add new section
+        - We can drag and drop the fields we want 
+        - We can remove a field by clicking "x" 
+        
+        - Field Types have the Data Types 
+        - We can choose the data type we need to use 
+        - The Gear Icon allows us to edit the field's properties 
+
+* Always change the name with u_
+
+        - We can aswell select the value of each field 
+        - The choices of the fields can also be edited 
+        
+        - We can use the /\ and \/ arrows to change from one Field property to another 
+
+        - Annotations can be added to the Form to provide Additional Information to the users or to create a section Seperator
+        - The appearnace of the Annotation can be selected from "Annotation Type List"
+
+        - Formatter can also be applied 
+
+        - The Changes appear for the Specific View for which it was configured 
+
+        - Section without lables are incorporated in the previous section 
+
+
+
+> Form Layout
+        - Provides List Collector Interface for Configuring Form
+        - We can select the View or Create New View 
+        - We select the section to be modified 
+        - Few Field Names comes with a "+" symbols
+                - Clicking that will show related lists and we can choose the Fields required from them
+                - The added fields from Related Lists comes with the Table Name from which they are chosen 
+        - Then we can navigate back using the Hyperlink of table and save the form 
+
+
+
+> Related Lists
+
+        - Form Context Menu -> Configure -> Related Lists
+        - We can edit what Related Lists we want to see and Save
+        - Record must be saved to see the Related List
+
+
+
+
+
+-->> Task Management Overview
+
+>> Task Overview 
+
+
+> What is ServiceNow Task ?
+
+A task is any record that can be assigned or completed by a user in ServiceNow
+Users create tasks and are notified as the task moves along a workflow
+Tasks can be assigned to specific users or user groups
+
+
+> Why use tasks ?
+
+The power (and value) of tasks is that they are repeatable processes across the enterprise
+By defining tasks, users with similar issues (for example, no network access) can have their issue automatically assigned to the appropriate user and assignment group
+This results in quicker resolution times and minimizes the possibility of human error
+This type of task (no network access), is called an Incident, and has specific information to be collected to support that type of work
+
+
+
+** Task Table is one of ServiceNow's core Table 
+
+        - It makes a series of standard fields like created by, due date, available to other tables - Incident, Problem, Change, Request etc..
+        - These Table Extend the Task Table
+
+
+
+
+>> Extended Tables 
+
+        - This contains additional fields that are needed for specific work processes
+                For Example :
+
+                - The Incident table has a Resolution code field, which is used to categorize the way that an incident was resolved
+                  This additional information is used for reporting purposes
+
+                - The Problem table includes fields specific to Problem Management, like Root Cause and Workaround
+                  These fields are used for publishing information for the Service Desk
+
+                - The Change Request table has an Implementation Plan field to specify the steps to be followed for implementing a change
+
+
+        - Using extended tables for different types of work, provides useful task-specific functionality for driving tasks
+
+        - Approvals : Approvals can be generated to a list of Approvers, either manually or automatically, according to approval rules
+                      Approvals can be incorporated into workflows or can stand alone
+
+        
+        - Assignment Rules : Assignment rules can automatically assign tasks to users or groups, ensuring that tasks are handled by the most appropriate team members
+
+        - Service Level Agreement : Service Level Agreements can track the amount of time that a task has been open, to ensure that tasks are completed within an allotted time
+
+        - Inactivity Monitors : Inactivity monitors ensure that tasks do not fall by the wayside by notifying users when tasks have been untouched for a predefined period of time
+
+        - Workflow : Workflow processes are specified by administrators and apply to tasks that meet certain conditions
+                     After a task is created that meets the conditions, the workflow applies an automated process to the task
+
+
+
+
+>> Assign Tasks
+
+The four Steps to assign tasks : 
+
+        1. Add Users to Groups 
+        2. Apply Roles to groups
+        3. Assign Tasks to Groups
+        4. Assign Tasks to Users
+
+
+1. Add Users to Groups :
+
+        Groups identify a subset of users based on common purpose. A user can belong to more than one group.
+
+        Users in groups can be assigned permissions to: 
+
+                - approve, change, or resolve incidents and requests
+                - provide a reference for alerts and notifications
+                - receive email notifications
+
+
+2. Apply Roles to Groups : 
+
+        Every user belonging to a group inherits that group's roles, so the preferred method of role management is:
+
+                - add users to group
+                - apply roles to groups
+
+        When removing a user from a group, roles inherited by that group are revoked for that user
+        Similarly, a group may contain other groups, where a child group inherits all roles owned by its parent
+        Users added to child groups gain roles of that child group plus any parent groups
+
+
+
+3. Assign Tasks to Groups :
+
+        With groups defined, tasks can be assigned to them
+
+        NOTE: Group names must be unique in ServiceNow
+
+
+
+4. Assign Tasks to Users :
+
+        Tasks can also be assigned to specific users within a group
+
+        In other words, a task record can be assigned to an assignment group and an assigned user
+
+
+
+
+
+>> Assignment Rules 
+
+        Assignment rules are used to automatically set a value in the Assigned to and/or Assignment group fields of a task record
+
+        You can view assignment rules by navigating to the All > System Policy > Rules > Assignment module
+
+
+> Creating an Assignment Rule :
+
+        1. Click New in Assignment Rule 
+        
+        2. Name : Hardware issues
+           Table - Incident[incident]
+           
+           Condition : 
+           Category is Hardware
+        
+        3. Assign To Tab : 
+
+                User : Winnie Reich
+                Group : Hardware
+
+        4. Submit
+
+        5. Create an Incident and Select Hardware as Category, Fill Mandatory Fields and Save
+
+        6. Verify
+
+
+
+
+> Assignment rule Criteria 
+
+An Assignment rule must meet the following criteria to execute 
+
+        - The Task Record has been created (or modified) and then saved on the form.
+        - The Task Record must be unassigned (no values in the Assignment Group and Assigned To Field)
+        - The assignment rule is the first rule that matches the specified table and conditions. If more than one assignment rule matches the conditions, only the rule with the lowest Order value runs
+
+        - Assignment rule can be scripted to give much flexibility on the trigger and outcome
+
+
+> Assignment lookup Rules
+
+        - These are another type of Assignment Rule
+        - These rules only applies to Incident Records
+        - They have fewer options than other assignment rules that can be applied to any task
+        - They can be created by navigating to All > System Policy > Rules > Assignment Lookup Rules
+
+
+
+
+--> Predictive Intelligence
+
+        - Predictive Intelligence uses machine-learning algorithms to determine field values during record creation. Existing data records are required to "train" machine-learning to make effective decisions.
+
+        - This results in improved efficiency and quality and reduces cost by:
+
+                        - Reducing the amount of time spent resolving tasks
+                        - Reducing the number of interactions required to resolve tasks
+                        - Reducing the number of potential human errors that could occur while categorizing and assigning work
+        
+
+
+
+--> Accessing Assigned Tasks
+
+        - My Work / My Groups Work
+
+                - The Service Desk application allows you to locate all work assigned to you or your group(s)
+                - It can be accessed by navigating to All > Service Desk > My Work or All > Service Desk > My Groups Work modules
+
+
+        - When an active task is routed to your group, it can be found under All > Service Desk > My Groups Work module
+        - Few Tasks may not be assigned to an individual. So the Assigned To Field may show empty
+        - A group member or manager assigns the task to an individual within the group
+        
+
+        - All > Service Desk > My Work lists all active tasks specifically assigned to you including:
+
+                Change Requests, Group Approvals, Incidents, Knowledge Base Submissions, Requests, Security Cases, Visual Task Board Tasks
+        
+
+
+
+
+--> Task Collaboration
+
+        - User Presence : Allows users to see who else is present and editing the same form
+        - Real Time Editing : This allows users to edit records as well see edits saved by others (Indicated by Pulse Icon)
+
+
+--> Document work and communicate with Caller using Activity Stream
+
+        - Notes Tab in a record allows you to communicate with Stakeholders and document task activities 
+        - Using Activity Stream on a list view, you can monitor incoming information from callers or other people working on the task
+
+        - The most important things to remember about the Notes tab are:
+
+                - Work notes are only visible to those working on the task.       
+                - Additional comments (customer visible) are visible to customers (callers).     
+                - Activity is a read-only record entry made when the record is created or updated.
+
+
+
+
+
+28/10/2022
+----------
+
+--> Visual Task Boards
+
+        - Visual Task Boards allow you to:
+
+                        - Manage your tasks through a visual, drag-and-drop interface
+                        - Identify process bottlenecks at a glance
+                        - Track activity to view updates all in one place
+
+
+
+        - Elements of Visual Task Board 
+
+                - Visual Task Boards are displayed graphically as lanes and cards, and provide a landing page to view and organize work in ServiceNow
+                - While Visual Task Boards may vary in their exact configuration, there are four elements common to each type :
+                                - Cards
+                                - Lanes
+                                - Quick Panel
+                                - Taskboard Tools
+                
+
+                - Title : The Title summarizes the Tasks being displayed, and how the Lanes are organized. 
+                          The title can be changed, as needed
+
+                - Cards : Cards are actually records that can be dragged between lanes 
+                          In this board, the cards are Incident records
+
+                - Lanes : Lanes allow you to sort records by field values or other user-defined values. In this example the board lanes are organized by the State on the Incident record.
+                          Because this is a Guided Task Board, when you move a card from the In Progress lane to the Resolved lane, the Incident state updates automatically.
+
+                - Quick Panel : The quick panel allows you to filter cards by user or other labels. On this board, the filter is on the user assigned to the incident. 
+                                You may also drag and drop the user pill onto a card, to assign a task to the selected user.
+
+        
+
+        - Taskboard Tools 
+
+                - Taskboard tools are a critical part of a Visual Task Board
+
+                        1. Filter Tool : The Filter tool allows you to filter Tasks by Title, Number, or Due Date. For example, if you filtered the Tasks by the word "Network", you would see the Tasks shown here.
+                                        Click the Clear Filters button to undo the filter.
+
+                        2. Info Tool : The Info tool shows details of Visual Task Board like the filters applied, the Lane definitions, and the links for sharing the board.
+
+                        3. Users Tool : The Users tool displays members of the Board, and Task Assignees. The users are also visible on the Quick Panel.
+                                       Click on the user's pill in the Quick Panel to filter the board and show only the cards for the selected user.
+
+                        4. Labels Tool : The Labels tool displays Labels and their associated colors, such as Blue for High Priority. Labels can be added and changed.
+                                        To associate labels with tasks, click the Labels pill on the Quick Panel. Then drag the desired label pill to a card
+                                        Once the labels have been dropped to the cards, you can apply filters by clicking on the blue High Priority pill from the Quick Panel.
+
+                        5. Activity Stream Tool : The Activity Stream tool displays all activities (Work notes, Additional comments, Field Changes) for all Tasks on the board.
+
+                        6. Configuration Tool : The Configuration tool allows you to configure (show/hide) Quick Panel or Card options.
+
+
+
+        - Types of Visual Task Boards
+                Three types of Visual Task Boards : 
+
+                        1. Guided 
+                        2. Flexible
+                        3. Freeform
+
+                
+                1. Guided boards - Guided boards can be created from a list and use the values of a specified field (e.g. State) as lanes. Tasks in the list are updated when cards are edited or change lanes on the Visual Task Board.
+
+                2. Flexible boards - Flexible boards are also created from a list, but lane changes do not update underlying task data.
+
+                3. Freeform boards - Freeform boards can act as your personal organizer to manage individual tasks of any kind. Lane changes do not update underlying task data.
+
+
+
+
+        --> Guided Visual Task Boards : 
+
+                        - The lanes of Guided Visual Task Boards are based on the predefined values on a task
+                        - Records in that list, which appear as cards, are modified when you edit cards or change lanes in a Guided board
+                                - You can drag cards to available engineers.
+                                - Notice the card count at the top of the lane updates.
+                                - Notice that the current owner's initials are displayed on lower left of card. 
+                        
+                
+
+        > Create a Guided Visual Task Board : 
+
+                        - Navigate to any table that extends Task Table 
+                        - Create a Filter to show records you want to work with 
+                        - Click the column option menu for the field you wnat to use as the base 
+                        - Select "Show Visual Task Board" 
+
+        
+
+        --> Flexible Visual Task Boards : 
+
+                        - Flexible Visual Task Boards are also based on specified fields from tasks
+                        - The lanes can be relabeled and new lanes can be created
+                        - Because these lanes are not linked to any fields on the record, there is no change to the record, when you drag the card from one lane to another lane
+        
+
+
+        > Create a Flexible Visual Task Board :
+
+                        - Navigate to any table that extends Task Table 
+                        - Create a Filter to show records you want to work with 
+                        - Click the Column Options menu for the field that you want to use as the basis for your Flexible Visual Task Board. In this case, Number was chosen because it is not a reference or choice field with predefined values.
+                        - Select "Show Visual Task Board" 
+
+                        - Unlike Guided Visual Task Boards, changing a card's lane does not modify the task record
+        
+
+
+        --> Freefrom Visual Task Board :
+
+                        - Freeform Visual Task Boards are just what its name implies, freeform. Since it is not based on a record list, you can add task records and configure it however you want.
+                        - The default lanes are the same as a Flexible board, but since it was not built from a record list, the lanes do not have any cards in them yet. You would add the cards yourself.
+
+        
+
+        > Create a Freeform Visual Task Board :
+
+                        - All > Self-Service > Visual Task Boards and select Create New Visual Task Board
+                        - Select Freeform Board 
+                        - You can also create Guided or Flexible board here by choosing Data Driven Board, but it is easier to create by the other method
+                        - Add Task by clicking "+ Add Card" from any Lane
+                        - Lane Changes would not update the task record
+
+                        - You can also add Incidents to your Freeform Task Board 
+                        - Go to Incident Records and right click on any Incident Number and select Add to Visual Task Board 
+                        - Select the board to which you want to add the Incident
+                        - Click "View Board" from the confirmation message 
+
+
+
+
+
+
+-->> Notifications Overview
+
+
+Inbound Email Actions - 
+        - Action that system takes in response to messages from users
+        - System responds to the mails based on the contents of the message
+        - This helps users perform system functions by creating or updating Incident or Change Request
+
+> The system can take two types of actions in response to a user's message 
+
+        - Make changes to a system table
+        - Send user an email message in reply 
+
+For example : 
+        User sends a normal mail to the system, the system according to the mail creates an Incident if required and Auto populates the fields
+
+
+
+Notifications : 
+        - System sends users to inform them of system events
+        - Notifications are triggered by system events
+        - The system sends out an email or message to the users whenever a system record is updated 
+        - System Notifications -> Notifications -> shows all the notifications that are OOTB 
+        - We can create custom Notifications as well by clicking "New"
+
+
+>> Notification 
+        - It will contain the Table Name and the other fields
+        - "When to send" Tab shows the conditions when this mail must be trigerred 
+        - Additional conditions can also be defined within a script
+        - "Who will receive" shows who will receive this mail
+        - We can add "Users" or "Groups" or trick is to use "User/Groups in fields" which allows to select the field which contain the user     
+                        For example : Caller Field
+
+> Dot Walking - The process of gathering information from a series of tables by expanding referenced fields
+
+        - We can as well use the subscribabale option which users can subscribe or not accordingly 
+        - To Subscribe to email 
+                Users -> Preferencs -> Notifications -> Core UI -> Click a Category to identify subscription preferences 
+        
+        - "What it will contain" Tab will contain the content of the notification 
+        - We can use a predefined message or subject line and message of our own 
+        - Select Variables pane allows you to choose field values and include in the mail
+        - The "Show Notification Scripts" from the Related Links helps you customize the content of the message using Scripts 
+        - Preview Notification helps you preview the mail
+        - Too many Notifications can reduce its value
+
+-> Email Digest - An email digest is a single email that summarizes the activity for a selected notification and its target record during a specified time interval
+
+
+
+-->> Reporting Overview
+
+
+-> Using Dashboards and Reports
+
+> Create Reports using the Report Designer 
+
+        - We can Create or view Dashboards that other people have shared with us
+        - If we have editing privilege, we can add widgets and reports with Live Data so that other people sharing the Dashboard can see them 
+        - You can create reports from the list 
+                - Right Click column and generate Pie/Bar Chart
+        - The data of report is grouped by the column selected 
+        - The Report will only contain Filtered Data if the List had any filters applied 
+
+
+        - Reports -> View/Run -> We can see reports created by logged in user
+        - We can as well see the Group, Global and all reports of the logged in user
+
+
+
+--> Create Report 
+
+        - Open Reports -> View/Run -> Click Create Report
+        - Name
+        - Source type : Data Source / Table 
+                - In a Table, you need to provide all the conditions to select report data from the table
+                - A report source defines a standard set of conditions for querying a particular table, which can be re-used in other reports
+        
+        - Select Data Source to use existing set of conditions 
+        - If there already exists a report with the same data source the system displays message - Check once and then proceed
+        - Type : Bars, Pie and Donuts, Time Series, Multidimensional, etc...
+        - After choosing the type, Group the data 
+        - Style Tab - Change Size, Colors etc..
+        - To share the report choose the share option from the header 
+        - Users must have access to the data in order to see reports
+        - Pie/Bar chart do not require access to data 
+        - Export to PDF does not show real time Data
+        - publishing the report - even Non SN users can see the report with Live Data 
+        - Schedules can also be created for reports 
+
+ 
+
+** Role Required : report_admin
+
+
+>> Create management dashboards, report on KPIs and metrics, and increase quality and reduce the costs of service delivery using Performance Analytics
+
+        - Performance Analytics (PA) allows users to create dashboards with widgets to visualize data over time in order to identify areas of improvement.
+        - With PA, users can learn to identify the metrics that matter for business objectives, using out-of-the-box ServiceNow capabilities and content to address measurement and reporting scenarios. 
+
+        - Unlike running a report in the Platform, developing and using an analytics solution is an ongoing and iterative process that users can improve over time.
+        - Review performance indicators, monitor metrics, and make improvements to organizational decision-making. 
+
+
+                - Widget: Saved view of indicator or breakdown
+                - Tables: Indicator Source - calculates scores
+                - Data Collector: Recurring jobs taking data snapshots
+                - Dashboard: Custom arrangement of widgets
+
+
+
+
+-->> Knowledge Management Overview
+
+
+> Knowledge Overview 
+
+        - We can access Knowledge :
+
+                        - Filter Navigator
+                        - Knowledge Base Service Portal (Knowledge Portal) 
+                
+        - Knowledge Portal will have KBs for specific information for users with Specific Groups or interests
+        - Under the Search Bar in KB, There are KBs, Articles, Q&A which Logged User has access to
+        - Featured - are selected by System Administrator or KB Owner 
+        - Most Useful - Most KB found as useful 
+        - Most Viewed
+
+        - Clicking the KB allows us to view those articles
+        - We can use the Sort and Filter Options
+        - Searching for the Keyword can be done through the Search box
+        
+
+        - There are several ways to provide feedback for the article
+                - Rate 
+                - Helpful or not
+                - Comments
+        
+        - To share Copy Permalink 
+
+        - Flagging an article is a good way to provide suggestions and it is not displayed to other users like in comments
+        
+        - If the user has contribution permission they can create a KB Article from the homepage
+
+        - If Social Q&A is active for KB, then users can respond to questions or add questions
+
+        - we can Voteup or Votedown Questions/Answers according to their usefulness
+
+        - Only Question Owner or Knowledge Owner can accept an answer as correct 
+        - Only Question Owner can edit the Question posted
+        - Questions with accepted answers are identified with Green Check Mark 
+
+
+31/10/2022
+----------
+
+
+
+> Knowledge Articles 
+
+        - A knowledge article is a record in a knowledge base that provides information to knowledge consumers.
+        - Common examples of knowledge articles include policies, self-help tips, troubleshooting, and resolution steps.
+        - Groups like Human Resources often use knowledge articles to share information like company policies or benefits information.
+
+
+--> Create Knowledge Articles
+
+        The following  options can be used to populate your knowledge base with knowledge articles:
+
+                - Create articles - Create articles using templates, and/or knowledge blocks directly in ServiceNow
+                - Create articles from cases or incidents - Allow agents and resolvers to quickly create and save knowledge to share with other users from cases in Customer Service Management applications or incidents in IT Service Management applications
+                - Import articles - Import Microsoft Word files into a knowledge base
+                - Integrate - Integrate to an existing, WebDAV (Web Distributed Authoring and Versioning) compliant knowledge source outside of ServiceNow
+
+
+--> Create a New Knowledge Article 
+
+                - Filter Navigator -> Knowledge -> Create an article
+
+                - We can also go into the KB and then Create an article from there
+
+                - We can take a Template
+
+                - The KB field will be auto populated based on the KB chosen at the beginning
+
+                - List of Category is based on KB
+                - Short Description - Title of KB
+
+                - Article Body
+
+                - We can use knowledge Blocks - Find the Block we are looking for
+                        - Only Blocks for the specific KB will appear
+                        - Click Insert in the blocks to add to KB body 
+
+                - When Artice type is HTML and we are not going to use the Blocks, then it is safe to Remove Formatting 
+                        - This ensures strange characters are not present in the article body
+
+                - Search for duplicates allows users to check if there exists any similar knowledge articles 
+                - Save as Draft 
+
+
+
+
+--> Create articles from cases or incidents
+
+                - If Knowledge-Centered Service (KCS) is used in your organization, agents and resolvers can create knowledge articles directly from cases or incidents.
+                - Using this approach makes knowledge a direct result of the resolution activities, instead of requiring a separate initiative.
+
+
+
+
+--> Import Articles 
+
+        - Knowledge authors have the ability to import Microsoft Word documents directly into a knowledge base, select a category (if applicable), and determine whether they are ready to trigger the Publish workflow for the new articles
+
+                - Import Article module under Knowledge Management Application 
+                - Select the KB, Category
+                - If you would like to trigger publish workflow, tick the checkbox
+                - SN allows multiple articles to be imported at once
+                - Import after choosing the articles/files
+                - Click Continue to see the article number
+                
+
+
+--> Integrate
+
+                - ServiceNow also has the capability to integrate with WebDAV compliant knowledge tools, such as Sharepoint.
+                - Integrating with Sharepoint allows documents within Sharepoint (or other WebDAV compliant sources) to appear in search results in ServiceNow.
+
+
+
+
+
+
+-->> Service Catalog Overview
+
+
+> Service Catalog Application 
+        
+        - This portal can also be accessed from Filter Navigator
+        - You can create one or multiple catalogs of products and shared services that your organization offers
+        - A service catalog can contain almost anything : computers, software, furniture, and office supplies, or work requests, password reset, and support requests
+        - The products and services in a catalog are organized into categories and subcategories
+
+
+--> To submit a request in Service Catalog 
+        
+        - Request Something 
+        - Select the Category and select the product 
+        - You will be in the Catalog Page
+        
+--> For System Administrator 
+
+        - Filter Navigator -> Service Catalog -> Catalog Definitions -> Maintain Items 
+        - Search for any item 
+        - You can change the picture, pricing, product Description, add or remove Flow/Workflow, also set variables like Questions etc...
+
+
+--> Fulfillment Process 
+
+        - Defines what happens when someone orders an item or requests a service from a Catalog
+        - Specifies the various people and groups required to perform a series of tasks to fulfill the request
+
+
+--> Service Requests 
+
+        - Lets users report an IT issue or changing Passwords 
+        - Creating an Incident in the Service Portal is in the "Can we help you ?" 
+
+** These forms are called Record Producers : As they add a record to a system table 
+
+
+-> To see various record producers 
+
+        - Filter Navigator -> Record Producers under Catalog Definitions
+
+
+Roles : 
+
+        - admin
+        - catalog_admin
+        - catalog_manager
+        - catalog_editor
+        - catalog_builder_editor
+
+
+
+
+> Service Catalog : Catalog Builder
+
+
+        - Create or edit catalog items using Catalog Builder. 
+        - This visual and guided experience enables you to delegate the creation and maintenance of the catalog. 
+        - When using the Catalog Builder to create templates, you can specify values or restrictions for items created using the template (e.g., restrictions to catalogs, categories, variable types, and portal settings). 
+
+        - There are limitations to what you can do in Catalog Builder as it does not allow the creation and editing of certain entities. 
+        - However, those entities can be created and edited in the Platform. 
+
+
+-> Using the Catalog Builder you can:
+
+        - Create a catalog item and item templates
+        - View the available catalog items and item templates
+        - View catalog items that are recently updated
+        - View the configured content that describes the catalog building process in your organization
+
+
+
+
+-->> Flow Designer Overview
+
+
+- What is Flow Designer ?
+
+        - Flow Designer is a Non Technical Interface for building and enabling process automation capabilities, known as flows
+        - Flows automate business logic for a particular application or process such as approvals, tasks, notifications, and record operations.
+        - Flow Designer helps you build time-saving applications quicker.
+
+
+Example : 
+
+        - Project manager has subtasks automatically created and added to a Visual Task Board when a Project Planning task is created.
+        - Customer Service develops a flow to communicate incident resolution through the end-user support channel, like product update subscription.
+        - Change Manager automatically creates an outage record and links it to an incident when the primary email server goes offline.
+
+
+
+Benifits of Flow Designer :
+
+        - Centralized : Flow Designer provides a single environment to build and visualize business processes
+        - Robust : Flow Designer provides configuration and runtime information to create, operate, and troubleshoot flows from a single interface
+        - Uer-friendly : Flow Designer provides natural-language-descriptions of flow logic
+        - Repeatable : Flow Designer promotes process automation by enabling subject matter experts to develop and share reusable actions
+        - Scalable : Flow Designer allows extending flow content by subscribing to IntegrationHub or installing spokes
+
+
+
+
+> When is Flow Designer Used ?
+
+When to use ?
+
+        - To plan or coordinate business processes across services with little technical user knowledge
+        - To reduce technical debt; meaning reduce scripting to simplify upgrades and deployments
+        - To integrate with 3rd party systems
+
+
+When not to use ?
+
+        - Existing logic already developed using the ServiceNow workflow editor
+        - ServiceNow Instance is running Jakarta or prior
+
+
+
+> To access Filter Navigator -> Process Automation -> Flow Designer
+
+        - The Flow Designer is seperate from the Next Experience Unified 
+        - The Tabs at the top in the landing page shows the existing flows, subflows, actions, executions, and help menus
+        - You can create New Flows using "New" Button
+
+
+
+> Flow Designer Triggers
+
+        >> Initiating a flow with Triggers
+
+                - A trigger starts a flow when the conditions of the trigger are met.
+                - Triggers can be record-based, schedule-based, or application-based.
+        
+
+        - Record Based :
+
+                - Runs a flow after the Record has been Created, Updated, or Deleted
+                - The Trriggering record can be used later in the flow as input for actions
+        
+
+        - Schedule Based : 
+
+                - Schedule based triggers run a flow at the specified date and time : daily, weekly, monthly etc..,
+                - The Execution time can be used as input for actions in the flow
+
+
+        - Application based :
+
+                - These type of trigger allows you to trigger a flow when an item is requested from the Service Catalog 
+                - In some instances, a plugin might be required
+
+
+
+        >> Triggering Condition (VTB Sample Flow given as example)
+
+                - Triggers can be record-based, schedule-based, or application-based
+                - Table Name is required for record based, date & time required for schecule based, and application name needed for Application based
+                - Condition for the Flow needs to be provided to trigger the Flow
+                - When to Run the Flow : Specify the type of session and which users can start a flow
+                - Where to run the Flow : Specify if the flow will run in the background or in the current session
+
+
+
+        >> Create the Flow of work with actions
+
+
+                - Actions are operations executed by Flow Designer, such as looking up a record, updating a field value, requesting an approval, or logging a value.
+                
+                - Actions : Actions are all about reusability of operations across multiple flows.
+                - Installed Spoke : Each Installed spoke can house several actions. Look over every spoke to see if an action is available before building your own custom action
+                - Action titles : Action titles convey the operation the action does
+                - Action Description : The spoke and action title can help you get a sense of what an action does
+
+
+        
+        >> Frequently used actions contained in the spoke ServiceNow Core
+
+
+                - Ask for approval : Create approvals on any record, including rules for an approval, rejection, or cancellation, in addition to specifying a Due Date
+                - Create a Record : Create a record on any table with configurable fields and field values.
+                - Delete Record : Delete a Record on any table 
+                - Look up Record : Look up a single record on any table, confirming whether or not it exists. You can use the information from the record in subsequent actions within the flow. The record will be available for selection in the Data panel on the far right of the Flow Designer layout.
+                - Look up Records : Look Up Records action, it looks up multiple records on any table using defined conditions.
+                - Wait for condition : Pause the flow until the record conditions are met.
+
+
+
+> Flow Designer Data
+
+
+        >> Pass Data between actions
+
+                - The Flow Designer Data pane contains data pills, which can be used in subsequent actions 
+                - Inputs are represented as data pills in the right hand pane
+                - Data pills are added to the Data panel, when you create Triggers and Actions in your workflows
+        
+
+        >> Triggers and Data pills (VTB Sample Flow given as example)
+
+                - The Incident Record pill displayed automatically in Data panel. 
+
+                - When a flow runs, it generates the data pill runtime value, which remains the same for the duration of the flow.
+                        - For example, a data pill for [Trigger->Incident Record] always contains the incident record values from when the flow started.
+
+                - Records shown in the Data panel can be expanded to show or select their corresponding fields.
+
+        
+        >> Actions and Data pills
+        
