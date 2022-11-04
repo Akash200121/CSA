@@ -1261,6 +1261,8 @@ Roles :
 
 
 
+01/11/2022
+----------
 
 -->> Flow Designer Overview
 
@@ -1313,6 +1315,9 @@ When not to use ?
         - The Tabs at the top in the landing page shows the existing flows, subflows, actions, executions, and help menus
         - You can create New Flows using "New" Button
 
+
+02/11/2022
+----------
 
 
 > Flow Designer Triggers
@@ -1397,4 +1402,125 @@ When not to use ?
 
         
         >> Actions and Data pills
+
+                - Each time you add an Action to a flow, Flow Designer adds a data pill to store its output results
+                - When designing a flow, you can use the results of an action as inputs for other flows, actions, or subflows
+                - To refer the data stored in the data pill, drag and drop the data pill from the Data section to the appropriate field in the flow.
+                - You can also use the Data Pill Picker icon to manually select the data.
+
+                - Data Pill Picker : It provides an alternative way to select data pills from the data panel into the flow 
+                                     The Data Pill Picker can be a faster way to select data when dot walking to other tables is required
+                
         
+
+
+> Process Automation Designer
+
+
+        >> What is Process Automation Designer
+
+                - This allows process owners to author cross-enterprise workflows within a single, unified interface
+                
+        >> Key Benifits
+
+                - Structured process design interface that makes it easy to define and visualize the process
+                - Stages and activities specified in the designer can be displayed on agents' workspaces to guide them through work tasks
+                - Activities can be linked to Flow Designer content to add automation to the process
+
+
+** Processes documented in the Process Automation Designer, are called Playbooks.
+
+
+
+        >> Stages and Activities 
+
+                - Take PlayBook Experience Demo process displayed on the Process Designer canvas. The process is organized into Stages and Activities.
+                - Example Stages: Assign, Create, Review and Update
+                  Example Activities: Simple Instruction, Wait for Interaction assignment, show Knowledge Article
+
+        -> Sections of Process Automation Designer canvas
+
+                - Main Header
+                - Activity Design Space 
+                - Show/Hide properties
+                - Add Process Activity 
+
+
+        >> Playbooks in Agent Workspaces
+
+                - Playbooks can be made visible in an Agent Workspace to outline the steps an agent should take for different scenarios.
+        
+
+        -> Features of a PlayBook
+
+                - Stages : Each Stage expands to shows all activities for that Stage
+                           Once the activity is selected, the center pane updates to prompt for the necessary information 
+                
+                - View Pane : The selected activity is displayed 
+
+
+
+        -> Process Automation Designer Benefits 
+
+
+        The Process Automation Designer allows you to organize content built in Flow Designer and unify cross-enterprise processes. Benefits of using the Process Automation Designer include: 
+
+
+                - Connecting multiple flows and actions
+                - Guiding end users to complete a process in a task-oriented interface
+                - Consolidating separate business processes across your organization
+                - Defining a consistent record lifecycle from beginning to end
+                - Passing data between activities and stages of business processes
+                - Specifying the conditions and the order for activities and stages
+                - Visualizing and managing activities and stages in a Kanban-style board
+
+
+
+
+
+-->> Virtual Agent Overview 
+
+        - Virtual Agent is a conversational bot platform that provides assistance to help users obtain information, make decisions, and perform common work tasks. 
+
+        - This includes information stored in:
+
+                        - Knowledge Bases
+                        - Service Catalog
+                        - System records
+
+** The biggest benefit to implementing Virtual Agent is your users can get immediate help, day or night.
+
+
+
+        > Personalized Customer Experience
+
+                - Virtual Agent offers a personalized customer experience by automating typical Tier 1 support tasks to be accomplished, including:
+
+                                - Answering FAQs
+                                - Providing tutorial (“how to”) information
+                                - Querying or updating records (for example, get the status on cases or incidents)
+                                - Gathering data, such as attachments, for the agent
+                                - Performing diagnostics
+                                - Resolving multi-step problems
+
+                - At any time, users have the option to switch to speak with a human agent for assistance, making sure they receive the help they need.
+
+                - Virtual Agent offers a web-based interface available for Service Portal, iOS and Android mobile environments. It also supports third-party messaging applications through ServiceNow adapters for Slack, Workplace, and Microsoft Teams.
+
+        
+
+03/11/2022
+----------
+
+
+-->> Additional ServiceNow Resources
+
+        - Product Documentation : https://docs.servicenow.com
+        - Support : https://support.servicenow.com
+        - Community
+        - Instance 
+        - NowLearning
+        - Nowcreators
+
+
+
