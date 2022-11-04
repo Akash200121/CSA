@@ -1,0 +1,9 @@
+
+04/11/2022
+----------
+
+Additional ServiceNow Fundamentals Content for System Administrators and Developers
+
+
+-->> Tables and Fields Lesson 
+
