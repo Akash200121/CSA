@@ -1,5 +1,5 @@
 
-04/11/2022
+07/11/2022
 ----------
 
 Additional ServiceNow Fundamentals Content for System Administrators and Developers
@@ -7,3 +7,1152 @@ Additional ServiceNow Fundamentals Content for System Administrators and Develop
 
 -->> Tables and Fields Lesson 
 
+
+>> What is the ServiceNow infrastructure ?
+
+Data in ServiceNow is stored and managed according to a Database structure that Administrators can view and configure :
+
+    - Tables : Data Structure or Database Component, which contain records
+    - Records : Data stored on tables, which contain fields
+    - Fields :  Individual pieces of data within a record
+
+
+
+
+>> Tables can be accessed using the following modules within the System Definition application:
+
+    - Dictionary - defines every table and field in the system. Table records are identified as a Collection type.
+    - Tables - contains a record for each table in the database. Custom tables can be created when the New button is created.
+    - Tables & Columns - lists existing tables in the database. Selecting a table name displays its contents.
+
+
+    - The System Dictionary contains the definition for each and every table and field in the database.
+    - Navigate to All -> System Definition -> Dictionary to access the system dictionary to modify table and field attributes
+
+
+
+>> Table components 
+
+    - A table is a Collection of records in the database into which information can be entered
+
+            - Each record corresponds to a row in a table
+            - Each field on a record corresponds to a column on that table
+
+    - Records: Are identified by a 32-character, globally unique ID, called a sys_id.
+    - Record numbers are automatically incremented, and the number format per table in the system can be changed by visiting the All > System Definition > Number Maintenance application.  
+
+    - Fields: Store the actual data. They are available in a variety of different field types, such as: Choice, Date/Time, Journal, Reference, and more. 
+    - Field types define how a field is interacted with through the interface, as well as the type and format of data it can store.
+
+
+
+>> Field attributes
+
+    - Field Label : 
+    
+                    - A user-friendly term for the field.
+                    - In this example, the Field Labels are: User ID, Name, and Location.
+
+    - Field Name : 
+    
+                    - A unique term for the field. It is very important to note the Field Name does NOT always match the Field Label.
+
+                            For example:
+                        
+                                    - The Field Name of the Location field on the User table is sys_user.city, whereas its Field Label is Location.
+                                    - The Field Name of the Name field on the User table is sys_user.first_name, whereas its Field Label is First Name.
+
+In the example above, [sys_user] is a table reference to the User table and anything that comes after the dot [.] is the Field Name (a unique identifier).
+
+
+
+    - Value : 
+
+                    - The actual data stored in the field, such as this user’s name, Aileen Mottern, or her location, Rome. In some cases, the value may be empty, or null.
+
+In this example the Name field displays a combination of the First name and Last name fields of the User record.
+
+
+
+
+>> Reference Fields
+
+    - A reference field stores a unique system identifier (known as the sys_id) of a record on another table which is what establishes the reference relationship.
+    - For example, the Caller field on the Incident table is a reference to a record on the User table.
+
+    - When you define a reference field, the platform creates a relationship between the two tables.
+    - Adding a reference field to a form makes the other fields in the referenced table available to the form.
+
+
+    - Administrators can create new reference fields and configure several options for reference fields.
+    - Reference fields are identified with the Reference Lookup icon.
+
+    - If a record is specified in the reference field on the source table, you can hover over the Information icon to preview the referenced record (on the target table).
+
+
+
+
+>> Table Relationships 
+
+    - Table can be related to each other in various ways
+
+        - One-to-Many
+        - Many-to-Many
+        - Database Views
+        - Extensions
+
+    
+    - One-to-Many : 
+
+            Within a table, a field can hold a reference to a record on another table. There are three one-to-many relationship fields:
+
+                        1. Reference Fields - Allows a user to select a record on a table defined by the reference field.  (Example: The Caller field on the Incident table allows a user to select any record on the User table.)
+                        2. Glide List - Allows a user to select multiple records on a table defined by the glide list.  (Example: The Watchlist field on the Incident table allows the user to select any record or records on the User table.)
+                        3. Document ID Fields - Allows a user to select a record on any table in the instance.  (Example: Document field on the Translated Text table.
+
+
+    - Many-to-Many :
+
+            - Two or more tables can be related in a bi-directional relationship, so that the related records are visible from both tables in a related list.
+            - Think ahead! Your data model is important. Plan so that you get the model right the first time.
+            - A common example of a many-to-many relationship is one between vendors and products. Software vendors can sell multiple products and products can be sold by multiple vendors.
+            - If you are working with many-to-many relationships in ServiceNow, you may find sys_collection.list and sys_m2m.list useful. 
+
+
+    - Database Views : 
+
+            - Two tables can be joined virtually to allow for reporting on data that might be stored in more than one table.
+            - Certain views are included in the base system with the Database Views and Database Views for Service Management plugins.
+            - Database Views are read-only.
+
+    
+    - Extensions : 
+
+            - A table can extend another table. The extended table includes unique fields plus all of the fields and their properties from the parent table.
+
+    
+
+08/11/2022
+----------
+
+
+>> Table types
+
+
+--> Extended Tables 
+
+        - Whenever developing a table a Developer or System Administrator must consider whether they are creating a table that is "Stand alone" or "Extended Table"
+        
+                - For Stand Alone tables - only the global default fields are automatically created 
+                - Extending a table incorporates all of the fields of the original table(Parent Table) in the Child Table and also allows us to add unique fields 
+        
+
+        ** The option to extend a table is only available when creating a new table. It is important to note however, not all tables are extensible.
+
+
+    - A table that extends another table is called "Child Class"
+
+    - The table it extends is called "Parent Class"
+
+    - For Example :
+
+        - Child tables extended from Task [task] include Change Request, Incident, and Problem.
+        - Child tables extended from Configuration Item [cmdb_ci] include Database, Hardware, and Software.
+    
+
+
+
+--> Table Labels
+
+        - A different label can be defined for each extended table, such as Incident, Change Request, Problem etc..,
+        - To add a different label for an extended table, navigate to All > System Definition > Language File. Then create a new entry for the extended table.
+
+
+
+--> Permission to extend
+
+    A table's extensible field is used to control whether a table can be extended 
+        
+        - If it is set to true (selected/checked), the table can be extended.
+        - If it is set to false (NOT selected/checked), the table cannot be extended.
+
+    
+
+
+15/11/2022
+----------
+
+
+--> Dictionary  
+
+        - Using the Dictionary overrides feature provides the ability to define a field on a child table differently from the field on the parent table.
+        - This means that if any changes are made in the Child Table it will not reflect upon the Parent Table
+        - Examples includes overriding the default values, field dependencies, or read-only status of a field.
+
+
+
+--> Base Tables 
+
+        - If a Table is extended but itself is not extending then it is called a "Base Table" 
+        - Every Child Table is a specialization of its base table or previous child table
+        - Example : The "Task[Task]" Table is a Base Table 
+
+        - A table can be both a parent and child class both extending and providing extensions for other tables. A parent class that is not an extension of another table is called a base class.
+
+
+
+--> Understanding Base vs Core Tables
+
+
+-       A Core Table is a table that exists in the ServiceNow base system.
+        In other words, core tables come WITH the system, they are there from the start. 
+        This is probably the easiest distinction of this table type. If it is a table that comes with ServiceNow, it’s a core table. 
+        But it is important to understand that a core table can also be a parent table (e.g., Task), a child table (e.g., Incident) or a base table (e.g., Task).
+
+-       A Base Table is a table that serves as a “base” from which other tables may extend. 
+        From the base table, you can establish parent/child relationships in the database. 
+        The child (extended) table includes unique fields PLUS all of the fields and properties which were inherited from the parent table. 
+        In the previous example, the Incident table (a child) of the Task table (parent), inherited the fields Number and Location from the parent and then added its own unique field Caller. 
+        What makes a base table different from a core table is that the base table is not an extension of another table (it has no parent).  A base table can also be considered a parent and/or a core table depending on the circumstances.  
+
+
+
+- In the Task table example above, the Task table is:
+
+                - (a) a core table because it comes with the ServiceNow base system
+
+                - (b) a base table because it’s not extended from any other table (no parent of its own), and
+
+                - (c) a parent table because it has children (child classes of Incident, Problem, and Change Request)
+
+
+
+- We see that the Task table is not only a parent table (because it has children—Incident, Problem, and Change Request), but it is also a base table because the task table itself is not extended (not an extension/child of any other table), AND the task table is also a core table because it is part of the ServiceNow base system. 
+  The task table is an interesting example of how a table can be a base table, a parent table, and a core table.
+
+
+
+
+--> Core Tables vs Custom Tables 
+
+
+        - Core tables are created by ServiceNow and provided with the base system.
+        - Customs tables are created by us
+
+        - Although custom tables are not in the base system, they can still interact with existing core tables or other custom tables.
+
+                For example, a reference field on a custom table can access data stored on a core table. By doing so, a relationship between the tables is created which makes them related tables. 
+                This relationship is not exclusive between just a custom table and a core table. Related tables can be a combination of multiple core tables and/or multiple custom tables.
+
+
+
+
+
+16/11/2022
+----------
+
+
+--> Schema Map
+
+
+        - The schema map provides a graphical representation of other tables related to a specific table.
+        - Relationships can be filtered by extension or reference classes by checking the appropriate boxes at the top of the map.
+
+        - The schema map is available to users with personalize_dictionary or admin roles
+
+
+--> To generate a Schema Map 
+
+
+        - All -> System Definitions -> Tables & Columns
+        - In the Table Names pane, Select a table
+        - Select Schema Map, The schema map for the selected table opens in a seperate tab or window 
+
+
+
+
+
+17/11/2022
+----------
+
+
+-->> Access Control Overview
+
+
+>> User Permission Summary 
+
+        - ServiceNow provides several levels of security before an end user has the capability to perform CRUD (Create, Read, Update, Delete) operations on a table:
+	        - User Authentication/Login: Users, Groups, and Roles.
+	        - Application and Modules Access: Controlled by roles configured at the Application and Module level.
+	        - Database Access: Access to tables, records, and fields is controlled via globally defined system properties; as well as table and field level Access Controls (deny access is the default behavior).
+
+
+
+        - There are three security modules on the All menu typically used by the System Administrator:
+	        - System Properties > Security
+	        - System Security > Access Control (ACL)
+	        - System Security > High Security Settings
+
+
+>> What is an Access Control 
+
+        - An access control is a security rule defined to restrict the permissions of a user from viewing and interacting with data. Most security settings are implemented using access controls.
+        - It is executed when access to any ServiceNow table is attempted. An access control may be set at the row or column level.
+        - Access control rules restrict ServiceNow-specific and CRUD operations.
+
+
+
+
+21/11/2022
+----------
+
+
+
+>> In addition to restricting CRUD operations, access control rules can restrict ServiceNow-specific operations on tables and fields.
+
+ServiceNow operation examples include:
+        - execute: user cannot execute scripts on a record or UI page.
+        - edit_ci_relations: user cannot define relationships between Configuration Item [cmdb_ci] tables.
+        - save_as_template: controls the field that should be saved when a template is created.
+        - report_on: user cannot create reports on the object.
+        - personalize_choices: user cannot right-click a choice list field and select Configure Choices.
+
+
+>> ACL (Access Control List)
+
+
+        - The ACL contains all of an instance's access control rules
+        - Users with appropriate permissions can modify rules and their Definitions
+
+        - Users with Admin role have special access to all platform features, functions, and data because admins can override access controls and pass all role checks so grant this privilege carefully! 
+        - In order for a user to create or update access control roles, they must have the security_admin role.
+
+
+
+>> Access Control Definition : Permission requirements
+
+
+--> Each access control rule specifies:
+        1.	The object being secured (e.g. table, field).
+        2.	The permissions required to access the object.
+                        - Roles
+                        - Conditional Expressions
+                        - Scripts
+        3.	Operation - a valid action the system can take (CRUD)
+
+
+
+>> System Created Access controls
+
+        - When a custom table is created, the system creates four access control rules by default:
+                        - create
+                        - delete
+                        - read
+                        - write
+
+        
+        - A role is also created by default and associated with these access control rules
+
+        - With system-created access controls, it is rare to have a table with no access control rules at all. This will be important to remember when you review how the rules are evaluated in the next lesson.
+
+
+
+--> To view the access controls associated with a table:
+
+
+                1. Type <table name>.config in the Filter navigator.
+                2. Select the Access Controls tab.
+
+
+** TIP: If you enter <table_name>.CONFIG (uppercase) in the Filter Navigator, the configuration files open in another browser window/tab.
+
+
+- When you performed the Create an Extended Table activity in the previous lesson, you created the u_cmdb_ci_hardware_infinity table. In addition to the table, the following were also automatically created:
+
+                - The u_infinity_user role.
+                - Table Access Control Rules (create, delete, read, write).
+
+
+
+
+>> Access Control Evaluation Lesson
+
+
+        -> Table access control evaluations
+
+                - When a session requests data, the system looks for matching access control rules.
+                
+                - Record ACL rules are processed in the following order:
+                        - Match the object against table ACL rules - most specific to most general.
+                        - Match the object against field ACL rules - most specific to most general.
+
+                - A user must pass both table and field ACL rules to access a record object.
+
+
+
+        
+
+23/11/2022
+----------
+
+
+
+--> This processing order ensures a user has access to the table (most specific table rules to most general) before evaluating access to the field (most specific to most general).
+               
+                - If a user fails a table access control rule, the user is denied access to all fields in the table, even if the user would pass a field ACL rule.
+                - If a user passes a table ACL rule, but fails a field ACL rule, the user cannot access the field described by the field ACL rule.
+
+
+
+
+
+>> Access control definition: rule types
+
+        - Each access control specifies the table or type of record (including fields), operation being secured, and unique object identifier.
+        - Access control rules are defined for and applied to a specific table so that the rule is within the context of the table and the type of data stored.
+
+                        - table.--None-- applies to the entire table. Instead of a table in the platform, imagine a house. A house has rooms (fields on a record). The record table.--None-- is house.--None-- in our example.
+                        - table.field is one specific field on the table or a specific room in the house. In this example, house.field would represent a living room.
+                        - table.* represents all other fields in the table or all other rooms in the house, not defined with a house.field rule (house.*). This method reduces the number of ACLs that need to be written for a table in the system, as it closes off any additional permissions.
+
+        
+
+
+>> Using Wildcard - Example
+
+
+Best Practice: 
+
+
+        - When creating .* Access Controls, also create a None Access Control, because only None grants access to records. 
+        - When writing an ACL that mostly grants access, use only None.	
+        - When writing an ACL that mostly denies access, use None and .*.
+
+
+
+
+
+
+24/11/2022
+----------
+
+
+-->> Importing Data Overview Module
+
+
+>> Import Sets Lesson
+
+
+-> What are Import Sets ?
+
+        - An Import Set is used to Import data from various data sources and then map that data into ServiceNow tables.
+
+        - You can import data from 
+
+                - A local source file (i.e. XML, CSV, Excel)
+                - A network server by providing a path and authentication information
+                - An LDAP connection
+                - A JDBC connection
+
+
+        - Examples of Import Sets
+
+                - An HR Implementer may use import sets to copy many HR Stories into the Development instance during implementation.
+                - Security department does not approve an integration with a data source vital to IT operations. Instead, they use import sets to periodically update a significant number of records.
+
+        
+** You must have the admin or import_admin role to manage all aspects of import sets.
+
+
+
+
+-> The Import Process 
+
+        - Data Sources : 
+                
+                - Records in ServiceNow that contain information regarding an Import Set data source.
+                - Data can be imported from local source (XML, CSV, Excel) or from a network server by providing the path and authentication information 
+                - A data source can come from a file, an LDAP connection, or a JDBC connection.
+
+        
+        - Import Set table : 
+
+                - This is the staging area for records imported from Data Sources
+                - Fields on these tables are generated automatically based on imported data and should not be modified manually.
+                - The imported file label is used to name the import set table the data will be loaded into.
+                - After creating the file it is possible for us to choose an existing Import set table to load data from same source, or data that has same source fields/column designations
+                - When an existing imprt set table is chosen, the table fields are added when the incoming sources of data contains fields/columns that do not exist
+        
+
+        - Transform Map :
+
+                - Serves as a guide for moving data from import set tables to Target Table
+                - It deteremines the relationships between fields in an import set table and fields in an existing ServiceNow table
+                - Transform Map is Flexible : Auto matching of field names from source and destination, or mapping can use adavanced logic and leverage the full power of SN Scripting Environment
+                - A single import Set field can also be mapped to multiple fields on a Target Table
+
+                - We must select the SN Table where we want the Transformed data to be placed
+                - Name and Source Table are set based on the label which was assigned to the Import Set
+                - It is necessary to assign a Target Table into which the data can be transferred
+
+        
+        - Transformation :
+
+                - The conversion of data from an import set table to its target table according to the rules defined in the transform Map
+        
+
+        - Target Table :
+
+                - Existing table in the platform where the data will be placed, post-transformation
+
+        
+
+
+--> Good Practices for Importing
+
+        - Verify/clean your data before importing it:
+                - Bad data (e.g. obsolete information) will complicate things later in the import and transform processes.
+                - Extra time spent planning and examining data before import will save time and potential problems later.
+
+        - Data should not be imported in extremely large chunks:
+                - Creating an extremely large import set can cause extensive delays.
+
+
+
+
+28/11/2022
+----------
+
+
+
+-->> Coalesce Field Lesson
+
+        - Allow you to specify if the selected Target Table should be used to coalesce on when import set records are transformed 
+        - If the Field Map Coalesce checkbox is selected when the import set row is transformed, the instance checks for an existing record in the Target Table with the same value in the Target field as the import set row Source field
+
+                - If a match is found using the coalesce field(s), the existing record will be updated with the information being imported
+                - If a match is not found using the coalesce field(s), then a new record will be inserted into the database
+
+        
+
+        - No Coalesce
+
+                - If no coalesce is detected 
+
+                        - All imported rows are created as new
+                        - Existing records are not updated
+                
+                - If the import is performed again then the records are duplicated
+
+        
+
+        - Single Field Coalesce
+
+                - We can coalesce on a single field to update an existing record
+
+        
+        - Multiple field Coalesce
+
+                - You can coalesce on multiple fields to update an existing record
+        
+        - Conditional Coalesce
+
+                - You can use a script to determine if a staging table row should coalesce to a target record
+                - Most conditional coalesce scripts are defined in the source script field of a field map for the sys_id field
+                - To update a target record using the staging table record values, the script must return the sys_id of the target table record
+
+
+
+-->> Data Policy Lesson
+
+        - A data policy is a rule that enforces data consistency by setting fields as mandatory and/or read-only.
+        - Its purpose is to Standardize data across SN application
+
+        - You can create data policies only for tables and database views that are in the same scope as the data policy and for other tables that have at least one field in the same scope as the data policy. For tables that are in a different scope from the data policy record, you can create data policy rules only for fields in the same scope as the data policy and you cannot make a field mandatory.
+
+        - All > System Policy > Rules > Data Policies
+
+
+
+** Data policies can apply rules to all data entered into the system, including data brought in through import sets, web services, and data entered through the Mobile UI. However, they can be opted out for web services and import sets.
+** A data policy is also applied to the list view to make a field read-only; the field will appear to be editable, but the update will fail.
+
+
+
+
+29/11/2022
+----------
+
+
+-->> CMDB Overview Lesson
+
+
+-> The CMDB and Configuration Items :
+
+        - The Configuration Application provides core functionality for the CMDB, including modules for Hardware and other CIs.
+        - This functionality is part of the CMDB plugin, which is activated in a base install.
+        - The CMDB provides a logical model of your company infrastructure by identifying, controlling, maintaining, and verifying the configuration items (CIs) that exist.
+
+
+-> Key CMDB Tables :
+        
+        1. Base Configuration Item [cmdb] is the base CMDB table for non IT CIs.
+        2. Configuration Item [cmdb_ci] stores the basic attributes of all the CIs.
+        3. CI Relationship [cmdb_rel_ci] contains CI relationship data.
+
+
+- As the number of CIs grow the health of the CMDB can be impacted 
+- Use the CMDB Data Manager Tool to create, publish, and manage CI policies to help maintain the CMDB in an efficient and operational state.
+
+
+
+-->
+
+        - The CMDB is a series of tables and fields that contain all of the CIs controlled by your company, as well as their attributes and relationships
+        - Roles required to access CMDB :
+
+                - asset
+                - itil
+                - itil_admin
+                - cmdb_read
+
+        - CI can be tangible or Intangible
+
+
+
+        - ServiceNow relationship rules use separate tables to define the relationships between specific CI base classes and dependent classes. 
+        - When you extend a table in the CMDB, this table also inherits relationships from the table it is extending. 
+        - You can create a new relationship rule in Configuration > Relationships > Suggested Relationships.
+
+
+
+--> ServiceNow Discovery and Service Mapping
+
+
+        - Discovery finds devices and applications on your network and updates the CMDB with the information it finds. This product is available as a separate subscription from the rest of the Now Platform.
+
+        - ServiceNow Service Mapping uses a “top-down” approach to overlay service maps onto existing configuration data to connect CIs underlying a given service, making the CMDB service aware.
+
+
+--> CI relationship editor
+
+        - The CI relationship editor uses a concept of suggested relationships to help users see reasonable relationships between Configuration items. 
+
+
+--> Configuration items: Dependency View
+
+
+        - Dependency Views:
+                
+                - Provide an interactive graphical interface to visualize relationships between configuration items.
+                - Indicate the status of CIs and allow access to the CI's related alerts, incidents, problems, and changes, and services.
+
+        
+
+
+30/11/2022
+----------
+
+
+-->> Catalog Components Lesson
+
+
+-> What is Service Catalog
+
+The Service Catalog is a robust ordering system for users to request services and products offered by various departments in your organization:
+       
+        - Categories organize catalog items
+        - "One stop shopping" offered to users
+        - Access to the Service Desk
+        - Help and Training Portal
+        - Multiple catalogs are supported
+
+
+-> Categories :
+
+        - Categories organizes Service Catalog Items in Logical Groups
+        - Categories have a Parent Child relationships
+
+
+-> Views :
+
+        - Can be defined for groups that use a Catalog, and Catalog Items can be shared by multiple catalogs. This results in the ability to dynamically control the ordering options from user to user.
+
+
+-> Catalog Administration :
+
+        - Administrators and users with the admin or catalog_admin role can manage multiple Service Catalogs and provide services to different teams within the organization (e.g., IT Services, Human Resources, and Facilities Management), as well as format descriptions, photos, and prices.
+        - Views can be defined for groups that view a Catalog, and Catalog Items can be shared by multiple catalogs.
+        - This results in the ability to dynamically control the ordering options from user to user.
+
+
+-> Catalog Builder :
+
+        - Create or edit catalog items using Catalog Builder. 
+        - When using the Catalog Builder to create templates, you can specify values or restrictions for items created using the template
+        
+        - There are limitations to what you can do in Catalog Builder as it does not allow the creation and editing of certain entities. However, those entities can be created and edited in the Platform.
+
+        - Catalog administrators create templates.
+        - Business or service owners gather catalog requirements and create catalog items from templates.
+        - All advanced capabilities are added by the catalog administrators or developers.
+
+
+-> Using the Catalog Builder you can : 
+        
+        - Create a catalog item and item templates
+        - View the available catalog items and item templates
+        - View catalog items that are recently updated
+        - View the configured content that describes the catalog building process in your organization
+
+
+
+-> Service Catalog Major Components :
+
+        The Order
+                1. Item
+                2. Order guide
+                3. Record Producers 
+
+
+        The Order Form 
+                1. Variable
+                2. Variable Sets
+
+
+        The Order Process 
+                1. Flows
+
+
+
+
+-> To create or modify an existing Catalog Item 
+
+        All > Service Catalog > Catalog Definitions > Maintain Items
+
+
+
+-> Variable :
+
+Common Variable Types:
+        - Multiple Choice: Creates radio buttons for user-defined question choices.
+        - Select Box: Creates a choice list of user-defined question choices.
+        - Single Line Text: Creates a single-line text input field.
+        - Reference: Specifies a record in another table, similar to a reference field.
+        - Checkbox: Creates a checkbox which may be selected or cleared; list check boxes in order under a label to create an options question.
+
+
+
+-> Variable Sets :
+
+        - Variable Set is just a container, so it has only two fields: 
+                - Name
+                - Description
+        - Navigate to All > Service Catalog > Catalog Variables > Variable Sets and create a new variable set. 
+        - After you save the variable set, you will get a Related List at the bottom where you can add as many variables as you want.​
+
+
+-> Record Producers :
+
+        - A record producer is a specific type of catalog item that allows end users to create task-based records, such as incident records, from the service catalog
+        - Record producer generates a task record such as incident, instead of a requested item.
+
+
+
+
+-->> Catalog Records Lesson 
+
+-> Catalog Item Request Output
+
+        - When a Request is placed then a Request Record, a Request Item Record, and Catalog Tasks are created, each on a corresponding table
+        - Request [sc_request] : 
+                - A request number is generated to keep track of an order
+                - The Number Starts with REQ 
+                - The items are organized from the Top Level regardless of how many items are requested 
+                - It can contain one or many items
+
+        - Requested Item [sc_req_item] :
+                - Records on this table begin with RITM and manage the delivery of each individual item in the request
+                - Each Item ordered is given a unique RITM number
+
+        - Catalog Task [sc_task] :
+                - Records on this table begins with SCTASK and are the assigned tasks needed to complete the delivery of each Request item from start to finish
+                - Important Fields are : 
+                                - Assignment Group 
+                                - Due Date
+                                - Work Start Date
+                                - Work End Date 
+
+
+-> Flow stages attached to an item indicate the progress or state of an item in the delivery process with one of the following stages:
+
+                - Waiting for approval (In Progress)
+                - Approved
+                - Pending (has not started)
+                - Fulfillment (In Progress)
+                - Deployment/Delivery
+                - Completed
+
+
+It is also possible to configure this Flow Designer
+
+
+
+
+-> Catalog security: user criteria for items and categories
+
+        - User Criteria defines conditions that are evaluated against users to determine which users can access catalog items. You can apply several user criteria records to a single catalog item or category.
+
+
+To apply user criteria:
+1. Open the Catalog Item -> Available For or Not Available For 
+2. Click Edit to add an existing user criteria record, or click New to create a new one.
+3. Save the record to associate the user criteria record with the catalog item or category.
+
+
+
+** These related lists are not on the form by default and must be added by configuring the form.
+** The Not Available For settings override the Available For settings. A user on the Not Available For list cannot access a catalog item or category, even if they are also on the Available For list.
+
+
+
+
+1/12/2022
+---------
+
+
+
+-->> Plugins Overview Lesson 
+
+
+-> What are plugins ?
+
+        - Plugins are software components that provide additional optional features and functionalities within a ServiceNow instance
+        - Before adding a script to ServiceNow, system administrators should always check the list of available plugins first to see if the functionality they are looking for can be activated this way
+        - Some plugins include "Demo Data", they are sample records to illustrate plugin features
+        - It is recommended to download these Demo Data 
+
+
+-> Platform Scripting Overview Lesson 
+
+
+-> What is Scripting in SN ?
+
+        - Scripting in SN/ Platform Scripting is customization of an instance or applications using JavaScript
+        - You can use Scripting to Configure your instance
+
+- It is easier to Debug and Fix Configuration changes when compared to a script after an upgrade 
+- It is recommended to use Customize without using Scripting, instead use conditional builder 
+- If you need to implement something more complex then use JavaScript
+
+
+- APIs (Application Programming Interfaces) provide classes and methods that you can use in scripts to define and customize functionality.
+
+
+
+-> Where Scripts execute ?
+
+      - A web browswer is the only thing that is installed in the Client's system. The data that needs to be accessed by the computer is stored on another Computer which can be accessed from remote, this is called as server
+      - This Server is a computer program running a service, a physical computer dedicated to run one or more services, or a system running a database
+
+      - Client Side : Scripts that run in a web browser
+      - Scerver Side : Scripts that run on a Server
+
+** Client to server round-trips take time and make the end-user wait for the round-trip to complete. Request + Response = Round trip
+
+
+
+
+--> Client Side Scripting Lesson :
+
+-> Client Scripts
+
+        - This is a "Real Time" Change to the appearance of the UI, especially forms.
+        - Client Scripts execute on Client Side
+
+Examples : 
+
+        - Automatically update the location field to reflect the user entered in the Called field
+        - Disable the attachment link of a closed record when the form is loaded so a user is unable to add or modify attachments
+	- Display a notice at the top of the page to confirm a catalog request was submitted
+
+
+
+-> Types of Client Scripts : 
+
+        1. onLoad()
+                - Runs when a form is loaded and before the user begins accessing the form
+                - Can be used to perform client side manipulation of the document on screen
+
+        2. onChange()
+                - Runs when a particular field changes value
+                - onChange script applies to particular field on the form
+
+        3. onSubmit()
+                - Runs when a Form is saved/submitted/updated 
+                - Can use onSubmit to validate things on the form to make sure the submission makes sense
+                - onSubmit can reject submission by returning false
+
+        4. onCellEdit()
+                - Runs when a cell on a list changes value through use of the list editor
+
+
+
+--> UI Policy and UI Policy Actions 
+
+        - A UI policy is a rule that is applied to a form or a list to dynamically change information or the form itself
+        - It is not required to write scripts 
+
+
+Once a UI Policy is initially configured, UI Policy Actions determine what happens on the form, including :
+
+        - Setting a field as mandatory – requiring a value in order to save the record.
+        - Setting a field as hidden – no longer displaying a field on the form.
+        - Setting a field as read-only – preventing a user from updating its value.
+
+
+- Data policy controls are similar to UI policies, however UI policies are only enforced on data entered into a form or list
+
+
+- Although Data Policy executes on Server Side, it can also run as a UI Policy Client Side by setting the value of its "Use as Ui Policy on Client as True"
+
+
+
+**  UI and data policies are not about security, they are about managing the user experience and data integrity
+
+
+--> UI Actions
+
+        - User interface (UI) actions add buttons, links, and context menu items on forms and lists, making the UI more interactive, customizable, and specific to user activities
+
+
+        - UI actions include:
+                - Form buttons
+                - Form context menu items (right-click the header)
+                - Form links (Related Links in a form)
+                - List buttons
+                - List context menu items (right-click a record)
+                - List choices (at the bottom of a list)
+                - List links (Related Links at the bottom of a list)
+
+        - When UI Action Active Box is selected, the UI Action is visible and can be interacted with by the user
+        - The UI Action with the Least Order Number will appear before all other UI Action
+        - UI Action can execute both on Server Side as well as Client Side depending on Whether the "Client" Check box is selected
+        - The conditions and actions can be scripted to define complex custom functionality
+
+
+
+
+--> Server Side Scripting Lesson 
+
+-> Business Rules 
+
+        - A business rule is a server-side script that is configured to run when a record is displayed, inserted, updated, deleted, or when a table is queried.
+        - They can be set to run "before" or "after" the database action has occured
+        - Mostly Customization of Platform Behaviour is done using Business Rules
+        - BR are loaded and initialized at the beginning of each interaction between user and the platform 
+
+
+** Before applying BR check whether the same can be acheived using Flow Designer
+
+
+        - The When to run determines when the BR must execute
+                - "Before" a record is saved in database
+                - "After" a record is saved to the database
+                - "Async" (queued); client and server work independently so the client is not waiting for the server
+                - "Display" before the record is displayed
+
+
+- To develop more complex conditions select the "Advanced" checkbox to display the Advanced Tab
+
+- "Condition" field is used for JS conditional statement to specify when the BR should run 
+- "Script" field is used for creating a script that runs when the defined condition is True
+
+
+
+- The primary objective of "Display BR" is to use a shared scratchpad object, "g_scratchpad", which is also sent to the client as part of the form. This is useful when you need to build client scripts that require server data that is not part of the record being displayed.
+
+
+
+
+
+-->> Update Set Overview Lesson 
+
+
+-> Update Sets 
+
+        - An Update Set tracks changes to applications and platform features, then groups them together so they can be moved from one instance of ServiceNow to another.
+        - This allows System Administrators and Developers to create changes in a Non-Production Instance and promote the changes to another instance as one u_infinity_user
+
+
+        - We can create a Specific Update set to track changes and when the Update set is marked as complete then it is ready to be moved in another Instance
+
+
+-> How it works
+
+        - Update Sets work by writing changes from tracked tables to the Customer Update [sys_update_xml] table.
+        - Newest changes overwrite older changes in an Update Set.
+        - When merging multiple update sets, if several update sets have modified the same object (e.g. the Incident form), the most recent change will be the one moved to the merged update set.
+
+
+
+-> Base System Update Set
+
+        - Every Instance in SN has a Default Update Set
+        - The Default Update Set captures changes made to the Instance without adding those changes to the User Created Update Set 
+
+
+-> Custom Update Set 
+
+        - It is recommended to Use Custom Update Set for Moving Update Set from One Instance to another 
+
+
+-> What is captured in an update set?
+        
+        - Customizations and configuration changes are captured in an update set, but NOT changes to data records
+
+
+-> What is NOT captured in an update set >
+
+        - Data Records : But if you do want to move the data with your Update Sets, then use the Export XML function 
+        - Dashboards : But if needed you can use the Unload Dashboard to export it along with the Update Set
+
+
+-> How to Create an Update Set ?
+
+        1. All -> System Update Sets -> Local Update Sets 
+        2. Click New
+        3. Complete the form accordingly
+        4. Click Submit 
+
+
+-> How to export an Update Set ?
+
+        1. Open the Update Set record 
+        2. Change the State to Complete
+        3. Right Click and Save
+        4. Select Export as XML from Related Links
+        5. Save the XML File 
+
+
+
+-> How to upload an Update Set ?
+
+        1. All -> System Update Sets -> Retrieved Update Sets 
+        2. Import Update Set from XML
+        3. Choose file and Upload 
+        4. Open the Imported Record and select Preview Update Set Button 
+        5. Click the Commit Update Set button 
+
+
+-> Retrieval from a remote instance 
+
+        1. All -> System Update Sets -> Update Sources
+        2. Enter the URL of the Instance from which you want to retrive the Update Set from 
+        3. Click the Retrieve Completed Update Sets
+        4. Select the Retrieved Update Set
+        5. Select the Update Set you want and Click on Commit Update Set Button 
+
+
+
+
+--> Integration Overview Lesson
+
+        - To share data between ServiceNow and an external system, ServiceNow integrates with many third-party applications and data sources.
+
+        - Standard integrations for ServiceNow include:
+                        - Login (Single Sign-On)
+                        - LDAP
+                        - Communications
+                        - Monitoring
+                        - Systems Management
+
+        - The most common processes required for integration are the CMDB, Incident Management, Problem Management, Change Management, User Administration, and Single Sign-On.
+        - A variety of techniques can be used, most notably web services, LDAP, Excel, CSV and email.
+
+
+-> Integration Hub 
+
+        - Integration Hub provides a single solution to quickly integrate with third party services to build and share content. Integrations are referred to as spokes and can be easily configured to integrate without scripting
+        - One major benefit of Integration Hub is that it reduces the need for code, while ensuring discoverability and reuse
+
+
+
+
+02/12/2022
+----------
+
+
+-->> Application Scope Lesson 
+
+-> Application Scope
+
+        - Determines which of the application's resources are available to other applications in the instance.
+        - Protects applications by identifying and restricting access to available artifacts and data.
+        - Prevents naming conflicts and allows the contextual development environment to determine what changes, if any, are permitted.
+        - Is assigned to an application when it is first created and cannot be changed.
+
+
+
+-> Application development in ServiceNow
+
+        - The Now Platform comes with standard Application
+        - For any other application downlaod from ServiceNowStore
+        - We can Update or Extended the existing applications 
+        - Create New Applications 
+
+
+-> App Engine Studio (AES)
+
+        - App Engine Studio (AES) is a guided, low-code tool for developing rich web applications to store information, automate business processes, and solve business problems. 
+
+
+-> Users can access the following in AES:
+
+        - Create app— Create an application from scratch.
+        - Quick start— Links to add objects to apps, browse app templates, and learn more about the App Engine Studio tools.
+        - My recent apps— A list of applications you have accessed recently using App Engine Studio.
+        - Templates— A list of templates you can use to create an application with preconfigured data, experience, logic and automation, and security.
+
+        - The My Apps tab allows you to view and search the applications you created.
+        - The Resource Tab provides Tutorials
+        
+# Have not added 2-3 modules under this topic, for more information Check out the Introduction to App Engine Studio - course
+
+
+
+-->> Event Overview Lesson 
+
+
+-> What is an event ?
+
+        - Events are special log records the system generates when something notable has happened or certain conditions occur.
+
+                - Examples:
+                        - When a user logs in
+                        - When someone approves a request
+                        - When someone submits a new KB article
+
+
+-> Generate an Event 
+
+        - The system uses business rules to monitor for system conditions 
+
+
+-> Alternative methods of generating events 
+
+        - The GlideSystem eventQueue() method is used to insert event records, which means you can generate an event wherever you can script. Including:
+
+                        - Flows
+                        - Workflows
+
+
+-> Responding Action 
+
+        - When a condition is met, its responding action generates an event record in the Event [sysevent] table
+        - Actions such as : 
+                - Send a notification
+                - Run a script action
+                - Trigger a flow
+
+        

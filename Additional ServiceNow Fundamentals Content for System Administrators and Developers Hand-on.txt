@@ -1,0 +1,330 @@
+16/11/2022
+----------
+
+
+--> Data Schema Overview Activity 
+
+
+    With an active procedure of testing Infinity devices, Cloud Dimensions needs a method for managing inventory and tracking how many devices have been issued and to whom.
+    The various teams involved with Infinity testing have come up with a solution but will need the help of the System Administrator to implement it.
+    Their plan is to have this information accessed through an application menu with a series of modules.
+    The primary data point being tracked will be the Infinity devices but information about the users, such as name and email, will also be available.
+
+
+Solution :
+ 
+A. Create New Table
+
+
+    - Always before creating a Table in SN, we must always check whether we must create a New Table or Can we use an extended Table and add the required fields 
+    - Populate the top of the Table form with the following information:
+                Label: Infinity
+                Name: u_cmdb_ci_hardware_infinity
+                Extends table: Hardware [cmdb_ci_hardware]
+                New menu name: Infinity (auto fills)
+
+    - Save the Record
+
+
+B. Add Fields to the Infinity Form 
+    
+    - Navigate to All > Infinity > Infinities
+
+** NOTE: During the creation of the Infinity table, the Create module checkbox was selected. As a result, a new module, Infinities (or Infinity s - a pluralized form of the table name) was created
+
+    - A list with No records to display is shown with default fields (column headers).
+    - Click New to open a form displaying default fields.
+    - Open the Form Context Menu, select Configure > Form Layout
+    - Remove the Assigned to, Category and Fault count fields, keep Name, Asset tag, Installed, and Status in the Selected container
+    - Add the Owned by and Support group fields to the Selected list
+    - Using dot-walking, add Owned by.Email to the Selected list.
+
+            a)  From the Available list, locate and select Owned by.
+            b)  Click the Expand selected reference field icon.
+            c)  Locate the .Owned by-->User fields and add Email to the Selected list.
+
+    - You should now see Owned by.Email under the Selected list.
+
+** NOTE: The Owned by.Email field’s value represents the email of the device’s owner and will automatically populate when a value is entered into the Owned by field, as long as the user record includes an email address.
+
+    - In the Create new field section, populate information as follows: 
+            - Name: Device Number
+            - Type: String (auto fills)
+            - Field length: Small (40) (auto fills)
+
+    - Click Add
+    - Add the two additional fields shown below using the Create new field section
+    - After adding the new fields, rearrange the fields under the Selected list to appear in this order.
+            - Device number
+            - Name
+            - Asset tag
+            - Device Version
+            - Support group
+            - Installed 
+            - Status
+            - Owned By
+            - Owned by.Email
+            - Device Notes
+    
+    - Click the Save button.
+    - Close the Saving Form Section window.
+    - The Infinity New record form displays.
+
+
+
+C. Update the Infinity Application Menu
+
+
+    - In the Filter navigator, type Infinity.
+	
+    - Navigate to All > Infinity. Hover your curser over Infinity and click the Edit Application icon.
+            Notice, this brings up the Application Menu record for Infinity.
+
+** NOTE: You could also access this record by navigating to All > System Definition > Application Menus and searching for Infinity in the list.
+	
+    - Update the Title to Infinity Inventory.
+    - Save the record to remain on the form.
+	- Navigate to All > System Definition > Modules. Search for and open the Infinities record.
+
+    - Update the record with the following information: 
+            Title: All Devices
+            Order: 200
+
+** NOTE: The Role, u_infinity_user shown under the Visibility tab was created automatically when the Infinity table was created. In a future activity, you will see how this role is used to manage visibility of the Infinity Devices application and its modules.
+
+
+    - Click Update.
+
+
+
+D. Configure a New Infinity Module
+   
+
+The application menu (Infinity Inventory) and the module which displays the list of Infinity devices (All Devices) is now visible in the All menu. Now, a new module will need to be configured so users can create new Infinity device records (using the form you just designed).
+
+
+        - Click New from the Modules section.
+
+        - Populate the form using the following information:
+                Title: Add Inventory
+
+        - Application menu: Infinity Inventory
+                Order: 100
+
+
+        - Click the Link Type tab and populate the fields as shown:
+            Link type: New Record
+            Table: Infinity [u_cmdb_ci_hardware_infinity]
+
+
+
+        - Verify the Title, Order, Link type, and Table are complete, as shown.
+
+
+
+Click Submit.
+ 
+
+E. Activity Verification
+
+
+        - Verify the application menu Infinity Inventory, and its associated modules are visible in the All menu.	
+        - Confirm the Add Inventory form has the correct fields in the correct order.
+
+
+
+
+23/11/2022
+----------
+
+
+--> Access Control Overview Activity
+
+
+A. Create and Add the Infinity Support Role
+
+
+As the system administrator, you will act upon the requirements provided by Cloud Dimensions management to successfully secure Infinity device data.
+
+The first step will be to create a new role for the group supporting the Infinity product and add it to the Infinity table. 
+
+    1. Verify you are logged in as the System Administrator.
+
+    2. Navigate to All > System Security > Users and Groups > Roles.
+
+    3. Verify you see the u_infinity_user role record. 
+        NOTE: This role was automatically created when the Infinity table was added to the database, along with the creation of four table Access Control rules. All of these are optional during the table creation process and can be avoided through settings.
+
+    4. Click New. 
+
+    5. Type into the Name field: u_infinity_support
+        Type into the Description field: Support role for the Infinity
+
+
+    6. From the Form Context Menu, select Save.
+
+
+B. Confirm and Modify Access to the Infinity Inventory Application
+Now that the roles have been created, they can be used to configure access to the Infinity Inventory application.
+
+    1. Navigate to All > Infinity Inventory and click the Edit Application icon.
+
+    2. Click the Edit User Roles icon.
+
+    3. Add the u_infinity_support role to the Selected list and click Done.
+
+    4. Click Update. 
+
+    5. Navigate to All > Infinity Inventory > All Devices and select the Edit Module icon. 
+
+    6. Select the Visibility tab and Click the Roles icon.
+
+    7. Add the u_infinity_support role to the Selected list.
+
+    8. Click Done.
+
+    9. Save the record.
+
+    10. Navigate to All > System Security > Users and Groups > Roles. Locate and select the u_infinity_support role. Verify this Role is associated with the Infinity Inventory Application and the All Devices Module.
+
+
+Two infinity roles (u_infinity_support AND u_infinity_user) now exist. This will allow for access provisioning in the future. Now that the roles have been created, they can be used to configure access to the Infinity Inventory application.
+
+
+C. Update the Service Desk Group
+Roles have been created, but they are not yet assigned to a group. Let’s fix that!
+
+    1. Navigate to All > System Security > Users and Groups > Groups.
+
+    2. Locate and open the Service Desk group record.
+
+    3. Select the Roles tab, then click Edit.
+
+    4. From the List Collector, search for and select the u_infinity_support role. Add the role to the Service Desk List.
+
+    5. Click Save.
+
+    6. The Service Desk Roles list should look like this:
+    NOTE: After adding the u_infinity_support role to the Service Desk group, multiple information messages will display indicating the role was added to the individual members of the group.
+
+ 
+
+D. Test the Visibility Settings
+Now that the u_infinity_support role has been added to the Service Desk group, all members of the Service Desk group should have access to the Infinity Inventory application. Users who are not members of the Service Desk group should not have access. We will test visibility of the Infinity Inventory application by impersonating users who are, and are not, assigned to the Service Desk group.
+
+    1. Impersonate Rita Center.
+
+    2. Navigate to All > Infinity > Infinity Inventory using the Filter navigator.
+
+    3. Confirm Rita Center cannot see/access the Infinity Inventory application and its modules.
+
+    4. Impersonate Kevin Edd.
+
+    5. Locate the Infinity Inventory application and expand it to confirm both modules are displayed.
+
+
+    6. Select the Add Inventory module.
+    NOTE: Although Kevin Edd has inherited the u_infinity_support role because he is a member of the Service Desk group, which has access to the Infinity Inventory Application, the role does not currently have the rights for creating new data. As a result, the Infinity New record page is blank when Kevin attempts to access it.
+
+    7. End the impersonation.
+
+
+
+E. Update Roles and Groups
+Access Control rules can be created to allow users (who belong to a group with a certain role) access to work with a table’s data, but first let us update Rita and Kevin’s group permissions so Service Desk AND Infinity Customer Support group members are granted access to the application and all of its modules.
+
+    1. As the System Administrator, navigate to All > User Administration > Roles.
+
+    2. Locate and open the u_infinity_support record.
+    HINT: If searching on name, try *infinity.
+
+    3. Under the Contains Roles tab, click Edit.
+
+    4. Add u_infinity_user to the Contains Roles List.
+
+    5.Save the record.
+    NOTE: You have added the u_infinity_user role and its permissions under the u_infinity_support role. This means all users with the u_infinity_support role automatically inherit the permissions found with u_infinity_user.
+
+    NOTE: Now, the u_infinity_support role contains the u_infinity_user role (which was created automatically when the Infinity table was created). Because the u_infinity_support role inherited permissions from the u_infinity_user role, users or groups granted the u_infinity support role now has read, write, update, and delete access to the Infinity application and its modules).
+    Next, you need to add the u_infinity_user role to the Infinity Customer Support group so Rita (and other members of the group) will have access as well.
+
+    6. Navigate to All > User Administration > Groups.  
+
+    7. Locate and open Infinity Customer Support.
+
+    8. On the Roles tab, click the Edit button.
+
+    9. Add the u_infinity_user role to the Infinity Customer Support Roles List.
+
+
+    10. Click Save.
+
+    11. Impersonate Rita Center.
+
+    12. Confirm the Infinity Inventory application is accessible, and its two modules display.
+    NOTE: Both Rita Center and Kevin Edd can now access both Infinity Inventory modules. Additionally, they can now create new records and update existing ones.
+
+    13. End the impersonation.
+
+
+F. Create an Access Control Rule
+Now that the group permissions have been set and only the right groups of users can access the application, create an Access Control rule that allows only the System Administrator, and no other role, to update the Asset tag field on the Infinity record.
+
+    1. As the System Administrator, open the User menu.
+
+    2. Select Elevate role.
+
+    NOTE: The base system admin can elevate to a privileged role to have access to the features of High Security Settings.
+
+    If you grant additional users the admin role, they cannot elevate to a privileged role.
+
+    3. Select the checkbox next to security_admin.
+
+    4. Click Update.
+
+    5. Notice the page refreshes and there is now a small up arrow at the top-right of the System Administrator user image. You can also see that the role is elevated by opening the User menu.
+
+    NOTE: With the elevated security_admin role, you can now create access controls.
+
+    6. Navigate to All > System Security > Access Control (ACL).
+
+    7. Filter the list of rules to find the four u_cmdb_ci_hardware_infinity rules.
+
+    8. Open the rule with the write operation.
+
+    9. Locate the Name field, select the drop-down to the right of the selected table Infinity [u_cmdb_ci_hardware_infinity].
+
+    10. Select Asset tag.
+
+    11. Open the form Context Menu and select Insert and Stay.
+
+    12. From the Verify Security Rules window, click Continue.
+
+
+    13. Scroll down to the Definition section and locate Requires role.
+
+    14. Double-click on Insert a new row…
+
+
+
+    15. Type admin, then click the Save icon to add the role.
+
+    16. Click the Update button to update the Access Control record.
+    NOTE: The u_cmdb_ci_hardware_infinity.asset_tag rule was created and added to the Access Control List.
+
+
+
+ 
+
+Activity Verification
+    1. Navigate to All > System Security > Access Control (ACL) and verify there are five access controls for the u_cmdb_ci_hardware_infinity table.
+
+    2. Impersonate Rita Center.
+
+    3. Navigate to All > Infinity Inventory > Add Inventory.
+
+    4. Verify you can Add a new Infinity device, then end the impersonation.
+
+    NOTE: All fields but Asset tag and Email should be editable. These same fields would also not be editable for existing records, for all users in Service Desk or Infinity Customer Support groups. As system administrator, all fields on the form are editable.
+
+
